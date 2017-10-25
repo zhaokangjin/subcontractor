@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.ProjectsAchievementMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.ProjectsAchievement">
+    <id column="PROJECT_ACHIEVEMENT_ID" jdbcType="CHAR" property="projectAchievementId" />
+    <result column="START_DATE" jdbcType="DATE" property="startDate" />
+    <result column="END_DATE" jdbcType="DATE" property="endDate" />
+    <result column="ACHIEVEMENT_DESCR" jdbcType="VARCHAR" property="achievementDescr" />
+    <result column="PROJECT_RESUME_ID" jdbcType="CHAR" property="projectResumeId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PROJECT_ACHIEVEMENT_ID, START_DATE, END_DATE, ACHIEVEMENT_DESCR, PROJECT_RESUME_ID, 
+    CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tsc_projects_achievement
+    where PROJECT_ACHIEVEMENT_ID = #{projectAchievementId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tsc_projects_achievement
+    where PROJECT_ACHIEVEMENT_ID = #{projectAchievementId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.ProjectsAchievement">
+    insert into tsc_projects_achievement (PROJECT_ACHIEVEMENT_ID, START_DATE, END_DATE, 
+      ACHIEVEMENT_DESCR, PROJECT_RESUME_ID, CREATE_TIME
+      )
+    values (#{projectAchievementId,jdbcType=CHAR}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{achievementDescr,jdbcType=VARCHAR}, #{projectResumeId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.ProjectsAchievement">
+    insert into tsc_projects_achievement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectAchievementId != null">
+        PROJECT_ACHIEVEMENT_ID,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="achievementDescr != null">
+        ACHIEVEMENT_DESCR,
+      </if>
+      <if test="projectResumeId != null">
+        PROJECT_RESUME_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectAchievementId != null">
+        #{projectAchievementId,jdbcType=CHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="achievementDescr != null">
+        #{achievementDescr,jdbcType=VARCHAR},
+      </if>
+      <if test="projectResumeId != null">
+        #{projectResumeId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.ProjectsAchievement">
+    update tsc_projects_achievement
+    <set>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="achievementDescr != null">
+        ACHIEVEMENT_DESCR = #{achievementDescr,jdbcType=VARCHAR},
+      </if>
+      <if test="projectResumeId != null">
+        PROJECT_RESUME_ID = #{projectResumeId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PROJECT_ACHIEVEMENT_ID = #{projectAchievementId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.ProjectsAchievement">
+    update tsc_projects_achievement
+    set START_DATE = #{startDate,jdbcType=DATE},
+      END_DATE = #{endDate,jdbcType=DATE},
+      ACHIEVEMENT_DESCR = #{achievementDescr,jdbcType=VARCHAR},
+      PROJECT_RESUME_ID = #{projectResumeId,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where PROJECT_ACHIEVEMENT_ID = #{projectAchievementId,jdbcType=CHAR}
+  </update>
+</mapper>

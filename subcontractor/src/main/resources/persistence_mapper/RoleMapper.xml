@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.Role">
+    <id column="ROLE_ID" jdbcType="CHAR" property="roleId" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLE_ID, ROLE_NAME, REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tpt_role
+    where ROLE_ID = #{roleId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tpt_role
+    where ROLE_ID = #{roleId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.Role">
+    insert into tpt_role (ROLE_ID, ROLE_NAME, REMARKS
+      )
+    values (#{roleId,jdbcType=CHAR}, #{roleName,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.Role">
+    insert into tpt_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=CHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.Role">
+    update tpt_role
+    <set>
+      <if test="roleName != null">
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.Role">
+    update tpt_role
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR}
+    where ROLE_ID = #{roleId,jdbcType=CHAR}
+  </update>
+</mapper>

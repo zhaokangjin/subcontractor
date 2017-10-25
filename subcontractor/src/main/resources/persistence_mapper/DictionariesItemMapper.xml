@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.DictionariesItemMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.DictionariesItem">
+    <id column="ITEM_CODE" jdbcType="CHAR" property="itemCode" />
+    <result column="DESCR" jdbcType="VARCHAR" property="descr" />
+    <result column="INTERNATIONAL_ID" jdbcType="CHAR" property="internationalId" />
+    <result column="DICTIONARY_CODE" jdbcType="CHAR" property="dictionaryCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ITEM_CODE, DESCR, INTERNATIONAL_ID, DICTIONARY_CODE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tlt_dictionaries_item
+    where ITEM_CODE = #{itemCode,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tlt_dictionaries_item
+    where ITEM_CODE = #{itemCode,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.DictionariesItem">
+    insert into tlt_dictionaries_item (ITEM_CODE, DESCR, INTERNATIONAL_ID, 
+      DICTIONARY_CODE)
+    values (#{itemCode,jdbcType=CHAR}, #{descr,jdbcType=VARCHAR}, #{internationalId,jdbcType=CHAR}, 
+      #{dictionaryCode,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.DictionariesItem">
+    insert into tlt_dictionaries_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemCode != null">
+        ITEM_CODE,
+      </if>
+      <if test="descr != null">
+        DESCR,
+      </if>
+      <if test="internationalId != null">
+        INTERNATIONAL_ID,
+      </if>
+      <if test="dictionaryCode != null">
+        DICTIONARY_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=CHAR},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="internationalId != null">
+        #{internationalId,jdbcType=CHAR},
+      </if>
+      <if test="dictionaryCode != null">
+        #{dictionaryCode,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.DictionariesItem">
+    update tlt_dictionaries_item
+    <set>
+      <if test="descr != null">
+        DESCR = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="internationalId != null">
+        INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR},
+      </if>
+      <if test="dictionaryCode != null">
+        DICTIONARY_CODE = #{dictionaryCode,jdbcType=CHAR},
+      </if>
+    </set>
+    where ITEM_CODE = #{itemCode,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.DictionariesItem">
+    update tlt_dictionaries_item
+    set DESCR = #{descr,jdbcType=VARCHAR},
+      INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR},
+      DICTIONARY_CODE = #{dictionaryCode,jdbcType=CHAR}
+    where ITEM_CODE = #{itemCode,jdbcType=CHAR}
+  </update>
+</mapper>

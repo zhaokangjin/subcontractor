@@ -1,0 +1,22 @@
+server:
+  port: ${APP_PORT:26500}
+  compression:
+    enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  application: 
+    name: job
+  mvc:
+    favicon:
+      enabled: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_IP:127.0.0.1}:${MYSQL_PORT:3306}/subcontractor?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PWD:23990308}
+mybatis:
+  type-aliases-package: com.accenture.subcontractor.job.domain
+  mapper-locations: classpath*:persistence_mapper/*Mapper.xml
+  config-location: classpath:mybatis-config.xml

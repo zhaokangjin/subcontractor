@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.PermissionMatrixMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.PermissionMatrixKey">
+    <id column="ROLE_ID" jdbcType="CHAR" property="roleId" />
+    <id column="PERMISSION_ID" jdbcType="CHAR" property="permissionId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.PermissionMatrixKey">
+    delete from tpt_permission_matrix
+    where ROLE_ID = #{roleId,jdbcType=CHAR}
+      and PERMISSION_ID = #{permissionId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.PermissionMatrixKey">
+    insert into tpt_permission_matrix (ROLE_ID, PERMISSION_ID)
+    values (#{roleId,jdbcType=CHAR}, #{permissionId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.PermissionMatrixKey">
+    insert into tpt_permission_matrix
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="permissionId != null">
+        PERMISSION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=CHAR},
+      </if>
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

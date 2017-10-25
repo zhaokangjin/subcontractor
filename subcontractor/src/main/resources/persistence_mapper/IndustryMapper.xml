@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.IndustryMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.Industry">
+    <id column="TRADE_ID" jdbcType="CHAR" property="tradeId" />
+    <result column="PARENT_TRADE" jdbcType="CHAR" property="parentTrade" />
+    <result column="TRADE_NAME" jdbcType="VARCHAR" property="tradeName" />
+    <result column="TRADE_FIRST_LETTER" jdbcType="VARCHAR" property="tradeFirstLetter" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TRADE_ID, PARENT_TRADE, TRADE_NAME, TRADE_FIRST_LETTER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tpt_industry
+    where TRADE_ID = #{tradeId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tpt_industry
+    where TRADE_ID = #{tradeId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.Industry">
+    insert into tpt_industry (TRADE_ID, PARENT_TRADE, TRADE_NAME, 
+      TRADE_FIRST_LETTER)
+    values (#{tradeId,jdbcType=CHAR}, #{parentTrade,jdbcType=CHAR}, #{tradeName,jdbcType=VARCHAR}, 
+      #{tradeFirstLetter,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.Industry">
+    insert into tpt_industry
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        TRADE_ID,
+      </if>
+      <if test="parentTrade != null">
+        PARENT_TRADE,
+      </if>
+      <if test="tradeName != null">
+        TRADE_NAME,
+      </if>
+      <if test="tradeFirstLetter != null">
+        TRADE_FIRST_LETTER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=CHAR},
+      </if>
+      <if test="parentTrade != null">
+        #{parentTrade,jdbcType=CHAR},
+      </if>
+      <if test="tradeName != null">
+        #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeFirstLetter != null">
+        #{tradeFirstLetter,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.Industry">
+    update tpt_industry
+    <set>
+      <if test="parentTrade != null">
+        PARENT_TRADE = #{parentTrade,jdbcType=CHAR},
+      </if>
+      <if test="tradeName != null">
+        TRADE_NAME = #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeFirstLetter != null">
+        TRADE_FIRST_LETTER = #{tradeFirstLetter,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TRADE_ID = #{tradeId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.Industry">
+    update tpt_industry
+    set PARENT_TRADE = #{parentTrade,jdbcType=CHAR},
+      TRADE_NAME = #{tradeName,jdbcType=VARCHAR},
+      TRADE_FIRST_LETTER = #{tradeFirstLetter,jdbcType=VARCHAR}
+    where TRADE_ID = #{tradeId,jdbcType=CHAR}
+  </update>
+</mapper>

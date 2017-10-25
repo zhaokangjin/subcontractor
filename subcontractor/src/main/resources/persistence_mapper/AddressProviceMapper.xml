@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.AddressProviceMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.AddressProvice">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="provice_id" jdbcType="INTEGER" property="proviceId" />
+    <result column="provice_name" jdbcType="CHAR" property="proviceName" />
+  </resultMap>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.AddressProvice">
+    insert into tpt_address_provice (id, provice_id, provice_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{proviceId,jdbcType=INTEGER}, #{proviceName,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.AddressProvice">
+    insert into tpt_address_provice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="proviceId != null">
+        provice_id,
+      </if>
+      <if test="proviceName != null">
+        provice_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proviceId != null">
+        #{proviceId,jdbcType=INTEGER},
+      </if>
+      <if test="proviceName != null">
+        #{proviceName,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

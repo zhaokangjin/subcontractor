@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.InternationalMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.International">
+    <id column="INTERNATIONAL_ID" jdbcType="CHAR" property="internationalId" />
+    <result column="DESCR" jdbcType="VARCHAR" property="descr" />
+    <result column="KEY_VALUE" jdbcType="VARCHAR" property="keyValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    INTERNATIONAL_ID, DESCR, KEY_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tlt_international
+    where INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tlt_international
+    where INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.International">
+    insert into tlt_international (INTERNATIONAL_ID, DESCR, KEY_VALUE
+      )
+    values (#{internationalId,jdbcType=CHAR}, #{descr,jdbcType=VARCHAR}, #{keyValue,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.International">
+    insert into tlt_international
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="internationalId != null">
+        INTERNATIONAL_ID,
+      </if>
+      <if test="descr != null">
+        DESCR,
+      </if>
+      <if test="keyValue != null">
+        KEY_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="internationalId != null">
+        #{internationalId,jdbcType=CHAR},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue != null">
+        #{keyValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.International">
+    update tlt_international
+    <set>
+      <if test="descr != null">
+        DESCR = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue != null">
+        KEY_VALUE = #{keyValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.International">
+    update tlt_international
+    set DESCR = #{descr,jdbcType=VARCHAR},
+      KEY_VALUE = #{keyValue,jdbcType=VARCHAR}
+    where INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR}
+  </update>
+</mapper>

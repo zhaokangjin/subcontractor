@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.accenture.subcontractor.job.persistence.AddressCountyMapper">
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.AddressCounty">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="city_id" jdbcType="BIGINT" property="cityId" />
+    <result column="county_id" jdbcType="BIGINT" property="countyId" />
+    <result column="county_name" jdbcType="CHAR" property="countyName" />
+  </resultMap>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.AddressCounty">
+    insert into tpt_address_county (id, city_id, county_id, 
+      county_name)
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=BIGINT}, #{countyId,jdbcType=BIGINT}, 
+      #{countyName,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.AddressCounty">
+    insert into tpt_address_county
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="countyId != null">
+        county_id,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countyId != null">
+        #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
