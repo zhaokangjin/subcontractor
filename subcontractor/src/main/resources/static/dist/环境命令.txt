@@ -1,0 +1,3 @@
+安装angularcli
+cnpm install -g typescript typings
+cnpm install -g angular-cli@latest

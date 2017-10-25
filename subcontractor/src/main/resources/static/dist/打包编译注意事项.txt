@@ -1,0 +1,47 @@
+ng set --global packageManager=cnpm
+//
+ng new portal —-style=scss --routing
+
+cnpm install bootstrap --save
+cnpm install font-awesome --save
+cnpm install primeng --save
+cnpm install echarts --save
+cnpm install jsplumb --save
+cnpm install md5 --save
+cnpm install ng2-translate --save
+cnpm install portfinder --save
+cnpm install tinymce --save
+cnpm install ts-helpers --save
+cnpm install webpack --save
+
+cnpm install bootstrap --save-dev
+cnpm install font-awesome --save-dev
+cnpm install primeng --save-dev
+cnpm install echarts --save-dev
+cnpm install jsplumb --save-dev
+cnpm install md5 --save-dev
+cnpm install ng2-translate --save-dev
+cnpm install portfinder --save-dev
+cnpm install tinymce --save-dev
+cnpm install ts-helpers --save-dev
+cnpm install webpack --save-dev
+
+安装所有依赖 
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install
+//npm缓存路径
+C:\Users\jimmy\AppData\Roaming
+安装jquery
+npm install jquery --save
+npm install @types/juqery —save
+起node 服务器
+cnpm install httpserver -g
+
+按 ctrl+shift+p 输入 配置语言 locale：输入 en-Us  zh-CN
+添加全局样式
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+重新编译环境
+npm rebuild node-sass --force
+
+git上传命令 git remote add origin https://github.com/zhaokangjin/subcontractor_web.git
