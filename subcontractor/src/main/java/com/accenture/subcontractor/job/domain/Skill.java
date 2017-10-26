@@ -2,6 +2,8 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Skill {
     // 专业技能ID >>>表字段 : PROFESSION_SKILL_ID
     private String professionSkillId;
@@ -16,6 +18,7 @@ public class Skill {
     private String userId;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     // 层级 >>>表字段 : LEVEL

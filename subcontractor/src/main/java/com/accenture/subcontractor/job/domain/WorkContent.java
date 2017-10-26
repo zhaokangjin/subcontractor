@@ -2,6 +2,8 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class WorkContent {
     // 内容ID >>>表字段 : CONTENT_ID
     private String contentId;
@@ -13,12 +15,15 @@ public class WorkContent {
     private String resumeId;
 
     // 开始日期 >>>表字段 : START_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date startDate;
 
     // 结束日期 >>>表字段 : END_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date endDate;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     // 部门名称 >>>表字段 : DEPARTMENT_NAME

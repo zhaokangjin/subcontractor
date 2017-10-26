@@ -2,11 +2,14 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Account extends AccountKey {
     // 描述 >>>表字段 : DESCR
     private String descr;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     // 删除标记 >>>表字段 : DELETE_FLAG

@@ -1,6 +1,9 @@
 package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class WorkResume {
     // 履历ID >>>表字段 : RESUME_ID
@@ -13,16 +16,22 @@ public class WorkResume {
     private String companyName;
 
     // 入职日期 >>>表字段 : ENTRY_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date entryDate;
 
     // 离职日期 >>>表字段 : QUIT_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date quitDate;
 
     // 用户ID >>>表字段 : USER_ID
     private String userId;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+    
+    // 工作内容表
+    private List<WorkContent> workContentList;
 
     public String getResumeId() {
         return resumeId;
@@ -79,4 +88,12 @@ public class WorkResume {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+	public List<WorkContent> getWorkContentList() {
+		return workContentList;
+	}
+
+	public void setWorkContentList(List<WorkContent> workContentList) {
+		this.workContentList = workContentList;
+	}
 }

@@ -2,6 +2,8 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class FileInfo {
     // 文件ID >>>表字段 : FILE_ID
     private String fileId;
@@ -19,6 +21,7 @@ public class FileInfo {
     private String creator;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     
     //

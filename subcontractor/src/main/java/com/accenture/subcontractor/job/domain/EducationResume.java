@@ -1,6 +1,9 @@
 package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class EducationResume {
     // 教育经历ID >>>表字段 : EDUCATION_RESUME_ID
@@ -16,16 +19,24 @@ public class EducationResume {
     private String professionCode;
 
     // 入学日期 >>>表字段 : ENROL_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date enrolDate;
 
     // 毕业日期 >>>表字段 : GRADUATION_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date graduationDate;
 
     // 用户ID >>>表字段 : USER_ID
     private String userId;
 
     // 创建时间 >>>表字段 : CREATE_TIME
-    private String createTime;
+    private Date createTime;
+    
+    //成绩表
+    private List<AchievementDesc> achievementDescList;
+    
+    //证书表
+    private List<Certificate> certificateList;
 
     public String getEducationResumeId() {
         return educationResumeId;
@@ -83,11 +94,27 @@ public class EducationResume {
         this.userId = userId;
     }
 
-    public String getCreateTime() {
-        return createTime;
-    }
+	public List<AchievementDesc> getAchievementDescList() {
+		return achievementDescList;
+	}
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
+	public void setAchievementDescList(List<AchievementDesc> achievementDescList) {
+		this.achievementDescList = achievementDescList;
+	}
+
+	public List<Certificate> getCertificateList() {
+		return certificateList;
+	}
+
+	public void setCertificateList(List<Certificate> certificateList) {
+		this.certificateList = certificateList;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 }

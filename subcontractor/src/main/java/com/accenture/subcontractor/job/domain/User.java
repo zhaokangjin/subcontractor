@@ -1,6 +1,9 @@
 package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class User {
     // 用户ID >>>表字段 : USER_ID
@@ -46,10 +49,27 @@ public class User {
     private String permissionId;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     // 手机 >>>表字段 : MOBILE
     private String mobile;
+    
+    // 账号表
+    private List<Account> accountList;
+    
+    //技能表
+    private List<Skill> skillList;
+    
+    //工作履历表
+    private List<WorkResume> workResumeList;
+    
+    //教育履历表
+    private List<EducationResume>  educationResumeList;
+    
+    //项目履历表
+    private List<ProjectResume> projectResumeList;
+    
 
     public String getUserId() {
         return userId;
@@ -147,7 +167,47 @@ public class User {
         this.sex = sex;
     }
 
-    public String getRoleId() {
+    public List<Account> getAccountList() {
+		return accountList;
+	}
+
+	public void setAccountList(List<Account> accountList) {
+		this.accountList = accountList;
+	}
+
+	public List<Skill> getSkillList() {
+		return skillList;
+	}
+
+	public void setSkillList(List<Skill> skillList) {
+		this.skillList = skillList;
+	}
+
+	public List<WorkResume> getWorkResumeList() {
+		return workResumeList;
+	}
+
+	public void setWorkResumeList(List<WorkResume> workResumeList) {
+		this.workResumeList = workResumeList;
+	}
+
+	public List<EducationResume> getEducationResumeList() {
+		return educationResumeList;
+	}
+
+	public void setEducationResumeList(List<EducationResume> educationResumeList) {
+		this.educationResumeList = educationResumeList;
+	}
+
+	public List<ProjectResume> getProjectResumeList() {
+		return projectResumeList;
+	}
+
+	public void setProjectResumeList(List<ProjectResume> projectResumeList) {
+		this.projectResumeList = projectResumeList;
+	}
+
+	public String getRoleId() {
         return roleId;
     }
 

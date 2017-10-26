@@ -2,14 +2,18 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ProjectsDesc {
     // 项目描述ID >>>表字段 : PROJECT_DESCR_ID
     private String projectDescrId;
 
     // 开始日期 >>>表字段 : START_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date startDate;
 
     // 结束日期 >>>表字段 : END_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date endDate;
 
     // 项目描述 >>>表字段 : PROJECT_DESCR
@@ -19,6 +23,7 @@ public class ProjectsDesc {
     private String projectResumeId;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     public String getProjectDescrId() {

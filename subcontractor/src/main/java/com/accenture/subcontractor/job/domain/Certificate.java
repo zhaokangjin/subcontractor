@@ -2,6 +2,8 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Certificate {
     // 证书ID >>>表字段 : CERTIFICATE_ID
     private String certificateId;
@@ -25,9 +27,11 @@ public class Certificate {
     private String certificateType;
 
     // 颁发日期 >>>表字段 : AWARD_DATE
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date awardDate;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     public String getCertificateId() {

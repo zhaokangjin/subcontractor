@@ -1,223 +1,275 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accenture.subcontractor.job.persistence.UserMapper">
-  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.User">
-    <id column="USER_ID" jdbcType="CHAR" property="userId" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
-    <result column="IDENTITY_CARD" jdbcType="VARCHAR" property="identityCard" />
-    <result column="TRADE_ID" jdbcType="CHAR" property="tradeId" />
-    <result column="NATIVE_PLACE" jdbcType="VARCHAR" property="nativePlace" />
-    <result column="DOMICILE" jdbcType="VARCHAR" property="domicile" />
-    <result column="INTRODUCTION" jdbcType="VARCHAR" property="introduction" />
-    <result column="MAIL" jdbcType="VARCHAR" property="mail" />
-    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
-    <result column="ORGAN_ID" jdbcType="CHAR" property="organId" />
-    <result column="SEX" jdbcType="CHAR" property="sex" />
-    <result column="ROLE_ID" jdbcType="CHAR" property="roleId" />
-    <result column="PERMISSION_ID" jdbcType="CHAR" property="permissionId" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    USER_ID, NAME, PHONE, IDENTITY_CARD, TRADE_ID, NATIVE_PLACE, DOMICILE, INTRODUCTION, 
-    MAIL, PASSWORD, ORGAN_ID, SEX, ROLE_ID, PERMISSION_ID, CREATE_TIME, MOBILE
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tpt_user
-    where USER_ID = #{userId,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tpt_user
-    where USER_ID = #{userId,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.User">
-    insert into tpt_user (USER_ID, NAME, PHONE, 
-      IDENTITY_CARD, TRADE_ID, NATIVE_PLACE, 
-      DOMICILE, INTRODUCTION, MAIL, 
-      PASSWORD, ORGAN_ID, SEX, ROLE_ID, 
-      PERMISSION_ID, CREATE_TIME, MOBILE
-      )
-    values (#{userId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR}, #{nativePlace,jdbcType=VARCHAR}, 
-      #{domicile,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, #{roleId,jdbcType=CHAR}, 
-      #{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.User">
-    insert into tpt_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        USER_ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="phone != null">
-        PHONE,
-      </if>
-      <if test="identityCard != null">
-        IDENTITY_CARD,
-      </if>
-      <if test="tradeId != null">
-        TRADE_ID,
-      </if>
-      <if test="nativePlace != null">
-        NATIVE_PLACE,
-      </if>
-      <if test="domicile != null">
-        DOMICILE,
-      </if>
-      <if test="introduction != null">
-        INTRODUCTION,
-      </if>
-      <if test="mail != null">
-        MAIL,
-      </if>
-      <if test="password != null">
-        PASSWORD,
-      </if>
-      <if test="organId != null">
-        ORGAN_ID,
-      </if>
-      <if test="sex != null">
-        SEX,
-      </if>
-      <if test="roleId != null">
-        ROLE_ID,
-      </if>
-      <if test="permissionId != null">
-        PERMISSION_ID,
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME,
-      </if>
-      <if test="mobile != null">
-        MOBILE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=CHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="identityCard != null">
-        #{identityCard,jdbcType=VARCHAR},
-      </if>
-      <if test="tradeId != null">
-        #{tradeId,jdbcType=CHAR},
-      </if>
-      <if test="nativePlace != null">
-        #{nativePlace,jdbcType=VARCHAR},
-      </if>
-      <if test="domicile != null">
-        #{domicile,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null">
-        #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="mail != null">
-        #{mail,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="organId != null">
-        #{organId,jdbcType=CHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=CHAR},
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=CHAR},
-      </if>
-      <if test="permissionId != null">
-        #{permissionId,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.User">
-    update tpt_user
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        PHONE = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="identityCard != null">
-        IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
-      </if>
-      <if test="tradeId != null">
-        TRADE_ID = #{tradeId,jdbcType=CHAR},
-      </if>
-      <if test="nativePlace != null">
-        NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
-      </if>
-      <if test="domicile != null">
-        DOMICILE = #{domicile,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null">
-        INTRODUCTION = #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="mail != null">
-        MAIL = #{mail,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        PASSWORD = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="organId != null">
-        ORGAN_ID = #{organId,jdbcType=CHAR},
-      </if>
-      <if test="sex != null">
-        SEX = #{sex,jdbcType=CHAR},
-      </if>
-      <if test="roleId != null">
-        ROLE_ID = #{roleId,jdbcType=CHAR},
-      </if>
-      <if test="permissionId != null">
-        PERMISSION_ID = #{permissionId,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="mobile != null">
-        MOBILE = #{mobile,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where USER_ID = #{userId,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.User">
-    update tpt_user
-    set NAME = #{name,jdbcType=VARCHAR},
-      PHONE = #{phone,jdbcType=VARCHAR},
-      IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
-      TRADE_ID = #{tradeId,jdbcType=CHAR},
-      NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
-      DOMICILE = #{domicile,jdbcType=VARCHAR},
-      INTRODUCTION = #{introduction,jdbcType=VARCHAR},
-      MAIL = #{mail,jdbcType=VARCHAR},
-      PASSWORD = #{password,jdbcType=VARCHAR},
-      ORGAN_ID = #{organId,jdbcType=CHAR},
-      SEX = #{sex,jdbcType=CHAR},
-      ROLE_ID = #{roleId,jdbcType=CHAR},
-      PERMISSION_ID = #{permissionId,jdbcType=CHAR},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      MOBILE = #{mobile,jdbcType=VARCHAR}
-    where USER_ID = #{userId,jdbcType=CHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.User">
+		<id column="USER_ID" jdbcType="CHAR" property="userId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+		<result column="IDENTITY_CARD" jdbcType="VARCHAR" property="identityCard" />
+		<result column="TRADE_ID" jdbcType="CHAR" property="tradeId" />
+		<result column="NATIVE_PLACE" jdbcType="VARCHAR" property="nativePlace" />
+		<result column="DOMICILE" jdbcType="VARCHAR" property="domicile" />
+		<result column="INTRODUCTION" jdbcType="VARCHAR" property="introduction" />
+		<result column="MAIL" jdbcType="VARCHAR" property="mail" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="ORGAN_ID" jdbcType="CHAR" property="organId" />
+		<result column="SEX" jdbcType="CHAR" property="sex" />
+		<result column="ROLE_ID" jdbcType="CHAR" property="roleId" />
+		<result column="PERMISSION_ID" jdbcType="CHAR" property="permissionId" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		USER_ID, NAME, PHONE, IDENTITY_CARD, TRADE_ID, NATIVE_PLACE, DOMICILE,
+		INTRODUCTION,
+		MAIL, PASSWORD, ORGAN_ID, SEX, ROLE_ID, PERMISSION_ID, CREATE_TIME, MOBILE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tpt_user
+		where USER_ID = #{userId,jdbcType=CHAR}
+	</select>
+	<!-- 自定义查询方法 -->
+	<select id="getUserAndChildren" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tpt_user
+		where USER_ID = #{userId,jdbcType=CHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tpt_user
+		where USER_ID = #{userId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.User">
+		insert into tpt_user (USER_ID, NAME, PHONE,
+		IDENTITY_CARD, TRADE_ID, NATIVE_PLACE,
+		DOMICILE, INTRODUCTION, MAIL,
+		PASSWORD, ORGAN_ID, SEX, ROLE_ID,
+		PERMISSION_ID, CREATE_TIME, MOBILE
+		)
+		values (#{userId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR}, #{nativePlace,jdbcType=VARCHAR},
+		#{domicile,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR},
+		#{mail,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR}, #{sex,jdbcType=CHAR},
+		#{roleId,jdbcType=CHAR},
+		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}
+		)
+	</insert>
+	<!-- 自定义插入方法 -->
+	<insert id="insertUserChildren" parameterType="com.accenture.subcontractor.job.domain.User">
+		insert into tpt_user (USER_ID, NAME, PHONE,
+		IDENTITY_CARD, TRADE_ID, NATIVE_PLACE,
+		DOMICILE, INTRODUCTION, MAIL,
+		PASSWORD, ORGAN_ID, SEX, ROLE_ID,
+		PERMISSION_ID, CREATE_TIME, MOBILE
+		)
+		values (#{userId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR}, #{nativePlace,jdbcType=VARCHAR},
+		#{domicile,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR},
+		#{mail,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR}, #{sex,jdbcType=CHAR},
+		#{roleId,jdbcType=CHAR},
+		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.User">
+		insert into tpt_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="identityCard != null">
+				IDENTITY_CARD,
+			</if>
+			<if test="tradeId != null">
+				TRADE_ID,
+			</if>
+			<if test="nativePlace != null">
+				NATIVE_PLACE,
+			</if>
+			<if test="domicile != null">
+				DOMICILE,
+			</if>
+			<if test="introduction != null">
+				INTRODUCTION,
+			</if>
+			<if test="mail != null">
+				MAIL,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="organId != null">
+				ORGAN_ID,
+			</if>
+			<if test="sex != null">
+				SEX,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="permissionId != null">
+				PERMISSION_ID,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="mobile != null">
+				MOBILE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=CHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="identityCard != null">
+				#{identityCard,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeId != null">
+				#{tradeId,jdbcType=CHAR},
+			</if>
+			<if test="nativePlace != null">
+				#{nativePlace,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				#{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="introduction != null">
+				#{introduction,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				#{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="organId != null">
+				#{organId,jdbcType=CHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=CHAR},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=CHAR},
+			</if>
+			<if test="permissionId != null">
+				#{permissionId,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.User">
+		update tpt_user
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="identityCard != null">
+				IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeId != null">
+				TRADE_ID = #{tradeId,jdbcType=CHAR},
+			</if>
+			<if test="nativePlace != null">
+				NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				DOMICILE = #{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="introduction != null">
+				INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				MAIL = #{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="organId != null">
+				ORGAN_ID = #{organId,jdbcType=CHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=CHAR},
+			</if>
+			<if test="roleId != null">
+				ROLE_ID = #{roleId,jdbcType=CHAR},
+			</if>
+			<if test="permissionId != null">
+				PERMISSION_ID = #{permissionId,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where USER_ID = #{userId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.User">
+		update tpt_user
+		set NAME = #{name,jdbcType=VARCHAR},
+		PHONE = #{phone,jdbcType=VARCHAR},
+		IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
+		TRADE_ID = #{tradeId,jdbcType=CHAR},
+		NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
+		DOMICILE = #{domicile,jdbcType=VARCHAR},
+		INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+		MAIL = #{mail,jdbcType=VARCHAR},
+		PASSWORD = #{password,jdbcType=VARCHAR},
+		ORGAN_ID = #{organId,jdbcType=CHAR},
+		SEX = #{sex,jdbcType=CHAR},
+		ROLE_ID = #{roleId,jdbcType=CHAR},
+		PERMISSION_ID = #{permissionId,jdbcType=CHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		MOBILE = #{mobile,jdbcType=VARCHAR}
+		where USER_ID = #{userId,jdbcType=CHAR}
+	</update>
+	<!-- 自定义更新方法 -->
+	<update id="updateUserChildren" parameterType="com.accenture.subcontractor.job.domain.User">
+		update tpt_user
+		set NAME = #{name,jdbcType=VARCHAR},
+		PHONE = #{phone,jdbcType=VARCHAR},
+		IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
+		TRADE_ID = #{tradeId,jdbcType=CHAR},
+		NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
+		DOMICILE = #{domicile,jdbcType=VARCHAR},
+		INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+		MAIL = #{mail,jdbcType=VARCHAR},
+		PASSWORD = #{password,jdbcType=VARCHAR},
+		ORGAN_ID = #{organId,jdbcType=CHAR},
+		SEX = #{sex,jdbcType=CHAR},
+		ROLE_ID = #{roleId,jdbcType=CHAR},
+		PERMISSION_ID = #{permissionId,jdbcType=CHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		MOBILE = #{mobile,jdbcType=VARCHAR}
+		where USER_ID = #{userId,jdbcType=CHAR}
+	</update>
 </mapper>

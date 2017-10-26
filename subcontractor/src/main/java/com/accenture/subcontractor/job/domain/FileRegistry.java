@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class FileRegistry {
     // 文件MD5 >>>表字段 : FILEMD5
@@ -22,6 +23,7 @@ public class FileRegistry {
     private String creator;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     
     @TableField(exist = true)
