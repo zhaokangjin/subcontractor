@@ -2,7 +2,6 @@ package com.accenture.subcontractor.job.persistence;
 
 import java.util.List;
 
-import com.accenture.subcontractor.job.domain.Industry;
 import com.accenture.subcontractor.job.domain.InternationalItem;
 
 public interface InternationalItemMapper {

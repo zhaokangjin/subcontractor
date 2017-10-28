@@ -2,7 +2,6 @@ package com.accenture.subcontractor.job.persistence;
 
 import java.util.List;
 
-import com.accenture.subcontractor.job.domain.SkillType;
 import com.accenture.subcontractor.job.domain.User;
 
 public interface UserMapper {

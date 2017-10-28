@@ -11,26 +11,34 @@
 		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		PROJECT_DESCR_ID, START_DATE, END_DATE, PROJECT_DESCR, PROJECT_RESUME_ID, CREATE_TIME
+		PROJECT_DESCR_ID, START_DATE, END_DATE, PROJECT_DESCR,
+		PROJECT_RESUME_ID, CREATE_TIME
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from tsc_projects_desc
-		where PROJECT_DESCR_ID = #{projectDescrId,jdbcType=CHAR}
+		where PROJECT_DESCR_ID =
+		#{projectDescrId,jdbcType=CHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from tsc_projects_desc
-		where PROJECT_DESCR_ID = #{projectDescrId,jdbcType=CHAR}
+		delete from
+		tsc_projects_desc
+		where PROJECT_DESCR_ID =
+		#{projectDescrId,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.ProjectsDesc">
-		insert into tsc_projects_desc (PROJECT_DESCR_ID, START_DATE, END_DATE,
-		PROJECT_DESCR, PROJECT_RESUME_ID, CREATE_TIME
+		insert into tsc_projects_desc
+		(PROJECT_DESCR_ID, START_DATE, END_DATE,
+		PROJECT_DESCR,
+		PROJECT_RESUME_ID, CREATE_TIME
 		)
-		values (#{projectDescrId,jdbcType=CHAR}, #{startDate,jdbcType=DATE},
+		values
+		(#{projectDescrId,jdbcType=CHAR}, #{startDate,jdbcType=DATE},
 		#{endDate,jdbcType=DATE},
-		#{projectDescr,jdbcType=VARCHAR}, #{projectResumeId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}
+		#{projectDescr,jdbcType=VARCHAR},
+		#{projectResumeId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.ProjectsDesc">
@@ -98,19 +106,37 @@
 		where PROJECT_DESCR_ID = #{projectDescrId,jdbcType=CHAR}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.ProjectsDesc">
-		update tsc_projects_desc
+		update
+		tsc_projects_desc
 		set START_DATE = #{startDate,jdbcType=DATE},
-		END_DATE = #{endDate,jdbcType=DATE},
-		PROJECT_DESCR = #{projectDescr,jdbcType=VARCHAR},
-		PROJECT_RESUME_ID = #{projectResumeId,jdbcType=CHAR},
-		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
-		where PROJECT_DESCR_ID = #{projectDescrId,jdbcType=CHAR}
+		END_DATE
+		= #{endDate,jdbcType=DATE},
+		PROJECT_DESCR =
+		#{projectDescr,jdbcType=VARCHAR},
+		PROJECT_RESUME_ID =
+		#{projectResumeId,jdbcType=CHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP}
+		where PROJECT_DESCR_ID =
+		#{projectDescrId,jdbcType=CHAR}
 	</update>
 	<update id="updateBatch" parameterType="java.util.List">
 
 	</update>
 	<insert id="insertBatch" parameterType="java.util.List">
-
+		insert into tsc_projects_desc (PROJECT_DESCR_ID, START_DATE, END_DATE,
+		PROJECT_DESCR, PROJECT_RESUME_ID, CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.projectDescrId,jdbcType=CHAR}, 
+			#{item.startDate,jdbcType=DATE},
+			#{item.endDate,jdbcType=DATE},
+			#{item.projectDescr,jdbcType=VARCHAR},
+			#{item.projectResumeId,jdbcType=CHAR}, 
+			#{item.createTime,jdbcType=TIMESTAMP}
+			)
+		</foreach>
 	</insert>
 	<delete id="deleteBatch" parameterType="java.util.List">
 

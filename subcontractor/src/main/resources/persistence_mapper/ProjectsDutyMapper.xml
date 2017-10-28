@@ -15,7 +15,8 @@
 		<result column="DEPARTMENT" jdbcType="VARCHAR" property="department" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		PROJECT_RESPONSIBILITY_ID, START_DATE, END_DATE, RESPONSIBILITY_DESCR, PROJECT_RESUME_ID,
+		PROJECT_RESPONSIBILITY_ID, START_DATE, END_DATE,
+		RESPONSIBILITY_DESCR, PROJECT_RESUME_ID,
 		CREATE_TIME, POST, DEPARTMENT
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String"
@@ -23,19 +24,26 @@
 		select
 		<include refid="Base_Column_List" />
 		from tsc_projects_duty
-		where PROJECT_RESPONSIBILITY_ID = #{projectResponsibilityId,jdbcType=CHAR}
+		where PROJECT_RESPONSIBILITY_ID =
+		#{projectResponsibilityId,jdbcType=CHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from tsc_projects_duty
-		where PROJECT_RESPONSIBILITY_ID = #{projectResponsibilityId,jdbcType=CHAR}
+		delete from
+		tsc_projects_duty
+		where PROJECT_RESPONSIBILITY_ID =
+		#{projectResponsibilityId,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.ProjectsDuty">
-		insert into tsc_projects_duty (PROJECT_RESPONSIBILITY_ID, START_DATE,
+		insert into tsc_projects_duty
+		(PROJECT_RESPONSIBILITY_ID, START_DATE,
 		END_DATE,
-		RESPONSIBILITY_DESCR, PROJECT_RESUME_ID, CREATE_TIME,
+		RESPONSIBILITY_DESCR,
+		PROJECT_RESUME_ID, CREATE_TIME,
 		POST, DEPARTMENT)
-		values (#{projectResponsibilityId,jdbcType=CHAR},
-		#{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE},
+		values
+		(#{projectResponsibilityId,jdbcType=CHAR},
+		#{startDate,jdbcType=DATE},
+		#{endDate,jdbcType=DATE},
 		#{responsibilityDescr,jdbcType=VARCHAR},
 		#{projectResumeId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
 		#{post,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR})
@@ -105,7 +113,8 @@
 				END_DATE = #{endDate,jdbcType=DATE},
 			</if>
 			<if test="responsibilityDescr != null">
-				RESPONSIBILITY_DESCR = #{responsibilityDescr,jdbcType=VARCHAR},
+				RESPONSIBILITY_DESCR =
+				#{responsibilityDescr,jdbcType=VARCHAR},
 			</if>
 			<if test="projectResumeId != null">
 				PROJECT_RESUME_ID = #{projectResumeId,jdbcType=CHAR},
@@ -124,21 +133,42 @@
 		#{projectResponsibilityId,jdbcType=CHAR}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.ProjectsDuty">
-		update tsc_projects_duty
+		update
+		tsc_projects_duty
 		set START_DATE = #{startDate,jdbcType=DATE},
-		END_DATE = #{endDate,jdbcType=DATE},
-		RESPONSIBILITY_DESCR = #{responsibilityDescr,jdbcType=VARCHAR},
-		PROJECT_RESUME_ID = #{projectResumeId,jdbcType=CHAR},
-		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		END_DATE
+		= #{endDate,jdbcType=DATE},
+		RESPONSIBILITY_DESCR =
+		#{responsibilityDescr,jdbcType=VARCHAR},
+		PROJECT_RESUME_ID =
+		#{projectResumeId,jdbcType=CHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
 		POST = #{post,jdbcType=VARCHAR},
 		DEPARTMENT = #{department,jdbcType=VARCHAR}
-		where PROJECT_RESPONSIBILITY_ID = #{projectResponsibilityId,jdbcType=CHAR}
+		where
+		PROJECT_RESPONSIBILITY_ID = #{projectResponsibilityId,jdbcType=CHAR}
 	</update>
 	<update id="updateBatch" parameterType="java.util.List">
 
 	</update>
 	<insert id="insertBatch" parameterType="java.util.List">
-
+		insert into tsc_projects_duty (PROJECT_RESPONSIBILITY_ID, START_DATE,
+		END_DATE,
+		RESPONSIBILITY_DESCR, PROJECT_RESUME_ID, CREATE_TIME,
+		POST,
+		DEPARTMENT)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.projectResponsibilityId,jdbcType=CHAR},
+			#{item.startDate,jdbcType=DATE},
+			#{item.endDate,jdbcType=DATE},
+			#{item.responsibilityDescr,jdbcType=VARCHAR},
+			#{item.projectResumeId,jdbcType=CHAR},
+			#{item.createTime,jdbcType=TIMESTAMP},
+			#{item.post,jdbcType=VARCHAR},
+			#{item.department,jdbcType=VARCHAR})
+		</foreach>
 	</insert>
 	<delete id="deleteBatch" parameterType="java.util.List">
 
