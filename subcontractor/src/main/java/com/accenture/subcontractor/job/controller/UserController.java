@@ -32,10 +32,19 @@ public class UserController {
 			user.setUserId(userId);
 			return userService.getUserAndChildren(user);
 		}else{
-			throw new NullPointerException();
+			throw new NullPointerException("UserController>getUserAndChild>account:NullPointerException");
 		}
 	}
-	
+	@RequestMapping(value="/save",method=RequestMethod.POST)
+	public void saveUserAndChildren(User user){
+		if(null!=user){
+			logger.info("UserController>getUserAndChild>account:"+JSON.toJSONString(user));
+			userService.saveOrUpdateUser(user);
+			
+		}else{
+			throw new NullPointerException("新增用户信息数据空指针异常");
+		}
+	}
 	
 	
 }

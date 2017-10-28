@@ -1,82 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.accenture.subcontractor.job.persistence.InternationalItemMapper">
-  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.InternationalItem">
-    <id column="ITEM_ID" jdbcType="CHAR" property="itemId" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="INTERNATIONAL_ID" jdbcType="CHAR" property="internationalId" />
-    <result column="COUNTRY_CODE" jdbcType="CHAR" property="countryCode" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ITEM_ID, NAME, INTERNATIONAL_ID, COUNTRY_CODE
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tlt_international_item
-    where ITEM_ID = #{itemId,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tlt_international_item
-    where ITEM_ID = #{itemId,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
-    insert into tlt_international_item (ITEM_ID, NAME, INTERNATIONAL_ID, 
-      COUNTRY_CODE)
-    values (#{itemId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{internationalId,jdbcType=CHAR}, 
-      #{countryCode,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
-    insert into tlt_international_item
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="itemId != null">
-        ITEM_ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="internationalId != null">
-        INTERNATIONAL_ID,
-      </if>
-      <if test="countryCode != null">
-        COUNTRY_CODE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="itemId != null">
-        #{itemId,jdbcType=CHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="internationalId != null">
-        #{internationalId,jdbcType=CHAR},
-      </if>
-      <if test="countryCode != null">
-        #{countryCode,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
-    update tlt_international_item
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="internationalId != null">
-        INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR},
-      </if>
-      <if test="countryCode != null">
-        COUNTRY_CODE = #{countryCode,jdbcType=CHAR},
-      </if>
-    </set>
-    where ITEM_ID = #{itemId,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
-    update tlt_international_item
-    set NAME = #{name,jdbcType=VARCHAR},
-      INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR},
-      COUNTRY_CODE = #{countryCode,jdbcType=CHAR}
-    where ITEM_ID = #{itemId,jdbcType=CHAR}
-  </update>
+<mapper
+	namespace="com.accenture.subcontractor.job.persistence.InternationalItemMapper">
+	<resultMap id="BaseResultMap"
+		type="com.accenture.subcontractor.job.domain.InternationalItem">
+		<id column="ITEM_ID" jdbcType="CHAR" property="itemId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="INTERNATIONAL_ID" jdbcType="CHAR" property="internationalId" />
+		<result column="COUNTRY_CODE" jdbcType="CHAR" property="countryCode" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ITEM_ID, NAME, INTERNATIONAL_ID, COUNTRY_CODE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tlt_international_item
+		where ITEM_ID = #{itemId,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tlt_international_item
+		where ITEM_ID = #{itemId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
+		insert into tlt_international_item (ITEM_ID, NAME, INTERNATIONAL_ID,
+		COUNTRY_CODE)
+		values (#{itemId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR},
+		#{internationalId,jdbcType=CHAR},
+		#{countryCode,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
+		insert into tlt_international_item
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="itemId != null">
+				ITEM_ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="internationalId != null">
+				INTERNATIONAL_ID,
+			</if>
+			<if test="countryCode != null">
+				COUNTRY_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="itemId != null">
+				#{itemId,jdbcType=CHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="internationalId != null">
+				#{internationalId,jdbcType=CHAR},
+			</if>
+			<if test="countryCode != null">
+				#{countryCode,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
+		update tlt_international_item
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="internationalId != null">
+				INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR},
+			</if>
+			<if test="countryCode != null">
+				COUNTRY_CODE = #{countryCode,jdbcType=CHAR},
+			</if>
+		</set>
+		where ITEM_ID = #{itemId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.accenture.subcontractor.job.domain.InternationalItem">
+		update tlt_international_item
+		set NAME = #{name,jdbcType=VARCHAR},
+		INTERNATIONAL_ID = #{internationalId,jdbcType=CHAR},
+		COUNTRY_CODE = #{countryCode,jdbcType=CHAR}
+		where ITEM_ID = #{itemId,jdbcType=CHAR}
+	</update>
+	<update id="updateBatch" parameterType="java.util.List">
+
+	</update>
+	<insert id="insertBatch" parameterType="java.util.List">
+
+	</insert>
+	<delete id="deleteBatch" parameterType="java.util.List">
+
+	</delete>	
 </mapper>

@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accenture.subcontractor.job.persistence.PermissionMapper">
-  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.Permission">
-    <id column="PERMISSION_ID" jdbcType="CHAR" property="permissionId" />
-    <result column="PERMISSION_NAME" jdbcType="VARCHAR" property="permissionName" />
-    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    PERMISSION_ID, PERMISSION_NAME, REMARKS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tpt_permission
-    where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tpt_permission
-    where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.Permission">
-    insert into tpt_permission (PERMISSION_ID, PERMISSION_NAME, REMARKS
-      )
-    values (#{permissionId,jdbcType=CHAR}, #{permissionName,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.Permission">
-    insert into tpt_permission
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="permissionId != null">
-        PERMISSION_ID,
-      </if>
-      <if test="permissionName != null">
-        PERMISSION_NAME,
-      </if>
-      <if test="remarks != null">
-        REMARKS,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="permissionId != null">
-        #{permissionId,jdbcType=CHAR},
-      </if>
-      <if test="permissionName != null">
-        #{permissionName,jdbcType=VARCHAR},
-      </if>
-      <if test="remarks != null">
-        #{remarks,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.Permission">
-    update tpt_permission
-    <set>
-      <if test="permissionName != null">
-        PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
-      </if>
-      <if test="remarks != null">
-        REMARKS = #{remarks,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.Permission">
-    update tpt_permission
-    set PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
-      REMARKS = #{remarks,jdbcType=VARCHAR}
-    where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
-  </update>
+	<resultMap id="BaseResultMap"
+		type="com.accenture.subcontractor.job.domain.Permission">
+		<id column="PERMISSION_ID" jdbcType="CHAR" property="permissionId" />
+		<result column="PERMISSION_NAME" jdbcType="VARCHAR" property="permissionName" />
+		<result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		PERMISSION_ID, PERMISSION_NAME, REMARKS
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tpt_permission
+		where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tpt_permission
+		where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.Permission">
+		insert into tpt_permission (PERMISSION_ID, PERMISSION_NAME, REMARKS
+		)
+		values (#{permissionId,jdbcType=CHAR}, #{permissionName,jdbcType=VARCHAR},
+		#{remarks,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.Permission">
+		insert into tpt_permission
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="permissionId != null">
+				PERMISSION_ID,
+			</if>
+			<if test="permissionName != null">
+				PERMISSION_NAME,
+			</if>
+			<if test="remarks != null">
+				REMARKS,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="permissionId != null">
+				#{permissionId,jdbcType=CHAR},
+			</if>
+			<if test="permissionName != null">
+				#{permissionName,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.Permission">
+		update tpt_permission
+		<set>
+			<if test="permissionName != null">
+				PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				REMARKS = #{remarks,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.Permission">
+		update tpt_permission
+		set PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+		REMARKS = #{remarks,jdbcType=VARCHAR}
+		where PERMISSION_ID = #{permissionId,jdbcType=CHAR}
+	</update>
 </mapper>

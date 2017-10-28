@@ -1,131 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.accenture.subcontractor.job.persistence.EducationResumeMapper">
-  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.EducationResume">
-    <id column="EDUCATION_RESUME_ID" jdbcType="CHAR" property="educationResumeId" />
-    <result column="UNIVERSITIES_CODE" jdbcType="VARCHAR" property="universitiesCode" />
-    <result column="EDUCATION_CODE" jdbcType="CHAR" property="educationCode" />
-    <result column="PROFESSION_CODE" jdbcType="CHAR" property="professionCode" />
-    <result column="ENROL_DATE" jdbcType="DATE" property="enrolDate" />
-    <result column="GRADUATION_DATE" jdbcType="DATE" property="graduationDate" />
-    <result column="USER_ID" jdbcType="CHAR" property="userId" />
-    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    EDUCATION_RESUME_ID, UNIVERSITIES_CODE, EDUCATION_CODE, PROFESSION_CODE, ENROL_DATE, 
-    GRADUATION_DATE, USER_ID, CREATE_TIME
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tsc_education_resume
-    where EDUCATION_RESUME_ID = #{educationResumeId,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tsc_education_resume
-    where EDUCATION_RESUME_ID = #{educationResumeId,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.EducationResume">
-    insert into tsc_education_resume (EDUCATION_RESUME_ID, UNIVERSITIES_CODE, 
-      EDUCATION_CODE, PROFESSION_CODE, ENROL_DATE, 
-      GRADUATION_DATE, USER_ID, CREATE_TIME
-      )
-    values (#{educationResumeId,jdbcType=CHAR}, #{universitiesCode,jdbcType=VARCHAR}, 
-      #{educationCode,jdbcType=CHAR}, #{professionCode,jdbcType=CHAR}, #{enrolDate,jdbcType=DATE}, 
-      #{graduationDate,jdbcType=DATE}, #{userId,jdbcType=CHAR}, #{createTime,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.EducationResume">
-    insert into tsc_education_resume
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="educationResumeId != null">
-        EDUCATION_RESUME_ID,
-      </if>
-      <if test="universitiesCode != null">
-        UNIVERSITIES_CODE,
-      </if>
-      <if test="educationCode != null">
-        EDUCATION_CODE,
-      </if>
-      <if test="professionCode != null">
-        PROFESSION_CODE,
-      </if>
-      <if test="enrolDate != null">
-        ENROL_DATE,
-      </if>
-      <if test="graduationDate != null">
-        GRADUATION_DATE,
-      </if>
-      <if test="userId != null">
-        USER_ID,
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="educationResumeId != null">
-        #{educationResumeId,jdbcType=CHAR},
-      </if>
-      <if test="universitiesCode != null">
-        #{universitiesCode,jdbcType=VARCHAR},
-      </if>
-      <if test="educationCode != null">
-        #{educationCode,jdbcType=CHAR},
-      </if>
-      <if test="professionCode != null">
-        #{professionCode,jdbcType=CHAR},
-      </if>
-      <if test="enrolDate != null">
-        #{enrolDate,jdbcType=DATE},
-      </if>
-      <if test="graduationDate != null">
-        #{graduationDate,jdbcType=DATE},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.EducationResume">
-    update tsc_education_resume
-    <set>
-      <if test="universitiesCode != null">
-        UNIVERSITIES_CODE = #{universitiesCode,jdbcType=VARCHAR},
-      </if>
-      <if test="educationCode != null">
-        EDUCATION_CODE = #{educationCode,jdbcType=CHAR},
-      </if>
-      <if test="professionCode != null">
-        PROFESSION_CODE = #{professionCode,jdbcType=CHAR},
-      </if>
-      <if test="enrolDate != null">
-        ENROL_DATE = #{enrolDate,jdbcType=DATE},
-      </if>
-      <if test="graduationDate != null">
-        GRADUATION_DATE = #{graduationDate,jdbcType=DATE},
-      </if>
-      <if test="userId != null">
-        USER_ID = #{userId,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where EDUCATION_RESUME_ID = #{educationResumeId,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.EducationResume">
-    update tsc_education_resume
-    set UNIVERSITIES_CODE = #{universitiesCode,jdbcType=VARCHAR},
-      EDUCATION_CODE = #{educationCode,jdbcType=CHAR},
-      PROFESSION_CODE = #{professionCode,jdbcType=CHAR},
-      ENROL_DATE = #{enrolDate,jdbcType=DATE},
-      GRADUATION_DATE = #{graduationDate,jdbcType=DATE},
-      USER_ID = #{userId,jdbcType=CHAR},
-      CREATE_TIME = #{createTime,jdbcType=VARCHAR}
-    where EDUCATION_RESUME_ID = #{educationResumeId,jdbcType=CHAR}
-  </update>
+<mapper
+	namespace="com.accenture.subcontractor.job.persistence.EducationResumeMapper">
+	<resultMap id="BaseResultMap"
+		type="com.accenture.subcontractor.job.domain.EducationResume">
+		<id column="EDUCATION_RESUME_ID" jdbcType="CHAR" property="educationResumeId" />
+		<result column="UNIVERSITIES_CODE" jdbcType="VARCHAR" property="universitiesCode" />
+		<result column="EDUCATION_CODE" jdbcType="CHAR" property="educationCode" />
+		<result column="PROFESSION_CODE" jdbcType="CHAR" property="professionCode" />
+		<result column="ENROL_DATE" jdbcType="DATE" property="enrolDate" />
+		<result column="GRADUATION_DATE" jdbcType="DATE" property="graduationDate" />
+		<result column="USER_ID" jdbcType="CHAR" property="userId" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		EDUCATION_RESUME_ID, UNIVERSITIES_CODE, EDUCATION_CODE,
+		PROFESSION_CODE, ENROL_DATE,
+		GRADUATION_DATE, USER_ID, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tsc_education_resume
+		where EDUCATION_RESUME_ID =
+		#{educationResumeId,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		tsc_education_resume
+		where EDUCATION_RESUME_ID =
+		#{educationResumeId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.accenture.subcontractor.job.domain.EducationResume">
+		insert into tsc_education_resume (EDUCATION_RESUME_ID,
+		UNIVERSITIES_CODE,
+		EDUCATION_CODE, PROFESSION_CODE, ENROL_DATE,
+		GRADUATION_DATE, USER_ID, CREATE_TIME
+		)
+		values
+		(#{educationResumeId,jdbcType=CHAR},
+		#{universitiesCode,jdbcType=VARCHAR},
+		#{educationCode,jdbcType=CHAR},
+		#{professionCode,jdbcType=CHAR}, #{enrolDate,jdbcType=DATE},
+		#{graduationDate,jdbcType=DATE}, #{userId,jdbcType=CHAR},
+		#{createTime,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.accenture.subcontractor.job.domain.EducationResume">
+		insert into tsc_education_resume
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="educationResumeId != null">
+				EDUCATION_RESUME_ID,
+			</if>
+			<if test="universitiesCode != null">
+				UNIVERSITIES_CODE,
+			</if>
+			<if test="educationCode != null">
+				EDUCATION_CODE,
+			</if>
+			<if test="professionCode != null">
+				PROFESSION_CODE,
+			</if>
+			<if test="enrolDate != null">
+				ENROL_DATE,
+			</if>
+			<if test="graduationDate != null">
+				GRADUATION_DATE,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="educationResumeId != null">
+				#{educationResumeId,jdbcType=CHAR},
+			</if>
+			<if test="universitiesCode != null">
+				#{universitiesCode,jdbcType=VARCHAR},
+			</if>
+			<if test="educationCode != null">
+				#{educationCode,jdbcType=CHAR},
+			</if>
+			<if test="professionCode != null">
+				#{professionCode,jdbcType=CHAR},
+			</if>
+			<if test="enrolDate != null">
+				#{enrolDate,jdbcType=DATE},
+			</if>
+			<if test="graduationDate != null">
+				#{graduationDate,jdbcType=DATE},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.accenture.subcontractor.job.domain.EducationResume">
+		update tsc_education_resume
+		<set>
+			<if test="universitiesCode != null">
+				UNIVERSITIES_CODE = #{universitiesCode,jdbcType=VARCHAR},
+			</if>
+			<if test="educationCode != null">
+				EDUCATION_CODE = #{educationCode,jdbcType=CHAR},
+			</if>
+			<if test="professionCode != null">
+				PROFESSION_CODE = #{professionCode,jdbcType=CHAR},
+			</if>
+			<if test="enrolDate != null">
+				ENROL_DATE = #{enrolDate,jdbcType=DATE},
+			</if>
+			<if test="graduationDate != null">
+				GRADUATION_DATE = #{graduationDate,jdbcType=DATE},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where EDUCATION_RESUME_ID = #{educationResumeId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.accenture.subcontractor.job.domain.EducationResume">
+		update tsc_education_resume
+		set UNIVERSITIES_CODE =
+		#{universitiesCode,jdbcType=VARCHAR},
+		EDUCATION_CODE =
+		#{educationCode,jdbcType=CHAR},
+		PROFESSION_CODE =
+		#{professionCode,jdbcType=CHAR},
+		ENROL_DATE =
+		#{enrolDate,jdbcType=DATE},
+		GRADUATION_DATE =
+		#{graduationDate,jdbcType=DATE},
+		USER_ID = #{userId,jdbcType=CHAR},
+		CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+		where EDUCATION_RESUME_ID
+		= #{educationResumeId,jdbcType=CHAR}
+	</update>
+	<update id="updateBatch" parameterType="java.util.List">
+
+	</update>
+	<insert id="insertBatch" parameterType="java.util.List">
+
+	</insert>
+	<delete id="deleteBatch" parameterType="java.util.List">
+
+	</delete>
 </mapper>

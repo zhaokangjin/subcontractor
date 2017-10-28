@@ -2,24 +2,21 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class Account extends AccountKey {
     // 描述 >>>表字段 : DESCR
     private String descr;
 
     // 创建时间 >>>表字段 : CREATE_TIME
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     // 删除标记 >>>表字段 : DELETE_FLAG
     private String deleteFlag;
 
+    // 账号名称 >>>表字段 : ACCOUNT_NUMBER_NAME
+    private String accountNumberName;
+
     // 用户ID >>>表字段 : USER_ID
     private String userId;
-
-    // 账号ID >>>表字段 : ACCOUNT_NUMBER_ID
-    private String accountNumberId;
 
     // 照片 >>>表字段 : PHOTO
     private String photo;
@@ -51,20 +48,20 @@ public class Account extends AccountKey {
         this.deleteFlag = deleteFlag;
     }
 
+    public String getAccountNumberName() {
+        return accountNumberName;
+    }
+
+    public void setAccountNumberName(String accountNumberName) {
+        this.accountNumberName = accountNumberName;
+    }
+
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getAccountNumberId() {
-        return accountNumberId;
-    }
-
-    public void setAccountNumberId(String accountNumberId) {
-        this.accountNumberId = accountNumberId;
     }
 
     public String getPhoto() {

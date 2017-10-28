@@ -46,14 +46,15 @@ public class AccountController {
 			try {
 				Account account = new Account();
 				if (type.equals("weixin")) {
+					
 					account.setAccountNumberId(MapUtils.getString(accountInfo, "openid", ""));
-					account.setAccountNumberType(type);
+					account.setAccountNumberType("W");
 					account.setPhoto( MapUtils.getString(accountInfo, "photo", ""));
 					account.setDescr(JSON.toJSONString(accountInfo));
 					account.setRegisterAddress(MapUtils.getString(accountInfo, "city", ""));
 					account.setDeleteFlag("N");
 					account.setCreateTime(new Date());
-					account.setAccountNumberName(MapUtils.getString(accountInfo, "subscribe", ""));
+					account.setAccountNumberName(MapUtils.getString(accountInfo, "nickname", ""));
 					accountService.insert(account);
 				}
 			} catch (Exception e) {

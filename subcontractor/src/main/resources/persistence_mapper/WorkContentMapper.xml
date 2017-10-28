@@ -1,129 +1,201 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accenture.subcontractor.job.persistence.WorkContentMapper">
-  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.WorkContent">
-    <id column="CONTENT_ID" jdbcType="CHAR" property="contentId" />
-    <result column="WORK_CONTENT" jdbcType="VARCHAR" property="workContent" />
-    <result column="RESUME_ID" jdbcType="CHAR" property="resumeId" />
-    <result column="START_DATE" jdbcType="DATE" property="startDate" />
-    <result column="END_DATE" jdbcType="DATE" property="endDate" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
-    <result column="POST" jdbcType="VARCHAR" property="post" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    CONTENT_ID, WORK_CONTENT, RESUME_ID, START_DATE, END_DATE, CREATE_TIME, DEPARTMENT_NAME, 
-    POST
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tsc_work_content
-    where CONTENT_ID = #{contentId,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tsc_work_content
-    where CONTENT_ID = #{contentId,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
-    insert into tsc_work_content (CONTENT_ID, WORK_CONTENT, RESUME_ID, 
-      START_DATE, END_DATE, CREATE_TIME, 
-      DEPARTMENT_NAME, POST)
-    values (#{contentId,jdbcType=CHAR}, #{workContent,jdbcType=VARCHAR}, #{resumeId,jdbcType=CHAR}, 
-      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{departmentName,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
-    insert into tsc_work_content
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="contentId != null">
-        CONTENT_ID,
-      </if>
-      <if test="workContent != null">
-        WORK_CONTENT,
-      </if>
-      <if test="resumeId != null">
-        RESUME_ID,
-      </if>
-      <if test="startDate != null">
-        START_DATE,
-      </if>
-      <if test="endDate != null">
-        END_DATE,
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME,
-      </if>
-      <if test="departmentName != null">
-        DEPARTMENT_NAME,
-      </if>
-      <if test="post != null">
-        POST,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="contentId != null">
-        #{contentId,jdbcType=CHAR},
-      </if>
-      <if test="workContent != null">
-        #{workContent,jdbcType=VARCHAR},
-      </if>
-      <if test="resumeId != null">
-        #{resumeId,jdbcType=CHAR},
-      </if>
-      <if test="startDate != null">
-        #{startDate,jdbcType=DATE},
-      </if>
-      <if test="endDate != null">
-        #{endDate,jdbcType=DATE},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="departmentName != null">
-        #{departmentName,jdbcType=VARCHAR},
-      </if>
-      <if test="post != null">
-        #{post,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
-    update tsc_work_content
-    <set>
-      <if test="workContent != null">
-        WORK_CONTENT = #{workContent,jdbcType=VARCHAR},
-      </if>
-      <if test="resumeId != null">
-        RESUME_ID = #{resumeId,jdbcType=CHAR},
-      </if>
-      <if test="startDate != null">
-        START_DATE = #{startDate,jdbcType=DATE},
-      </if>
-      <if test="endDate != null">
-        END_DATE = #{endDate,jdbcType=DATE},
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="departmentName != null">
-        DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
-      </if>
-      <if test="post != null">
-        POST = #{post,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where CONTENT_ID = #{contentId,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
-    update tsc_work_content
-    set WORK_CONTENT = #{workContent,jdbcType=VARCHAR},
-      RESUME_ID = #{resumeId,jdbcType=CHAR},
-      START_DATE = #{startDate,jdbcType=DATE},
-      END_DATE = #{endDate,jdbcType=DATE},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
-      POST = #{post,jdbcType=VARCHAR}
-    where CONTENT_ID = #{contentId,jdbcType=CHAR}
-  </update>
+	<resultMap id="BaseResultMap"
+		type="com.accenture.subcontractor.job.domain.WorkContent">
+		<id column="CONTENT_ID" jdbcType="CHAR" property="contentId" />
+		<result column="WORK_CONTENT" jdbcType="VARCHAR" property="workContent" />
+		<result column="RESUME_ID" jdbcType="CHAR" property="resumeId" />
+		<result column="START_DATE" jdbcType="DATE" property="startDate" />
+		<result column="END_DATE" jdbcType="DATE" property="endDate" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+		<result column="POST" jdbcType="VARCHAR" property="post" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CONTENT_ID, WORK_CONTENT, RESUME_ID, START_DATE, END_DATE,
+		CREATE_TIME,
+		DEPARTMENT_NAME,
+		POST
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tsc_work_content
+		where CONTENT_ID = #{contentId,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		tsc_work_content
+		where CONTENT_ID = #{contentId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
+		insert into tsc_work_content
+		(CONTENT_ID, WORK_CONTENT, RESUME_ID,
+		START_DATE, END_DATE,
+		CREATE_TIME,
+		DEPARTMENT_NAME, POST)
+		values (#{contentId,jdbcType=CHAR},
+		#{workContent,jdbcType=VARCHAR},
+		#{resumeId,jdbcType=CHAR},
+		#{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{departmentName,jdbcType=VARCHAR},
+		#{post,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
+		insert into tsc_work_content
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="contentId != null">
+				CONTENT_ID,
+			</if>
+			<if test="workContent != null">
+				WORK_CONTENT,
+			</if>
+			<if test="resumeId != null">
+				RESUME_ID,
+			</if>
+			<if test="startDate != null">
+				START_DATE,
+			</if>
+			<if test="endDate != null">
+				END_DATE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="departmentName != null">
+				DEPARTMENT_NAME,
+			</if>
+			<if test="post != null">
+				POST,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="contentId != null">
+				#{contentId,jdbcType=CHAR},
+			</if>
+			<if test="workContent != null">
+				#{workContent,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeId != null">
+				#{resumeId,jdbcType=CHAR},
+			</if>
+			<if test="startDate != null">
+				#{startDate,jdbcType=DATE},
+			</if>
+			<if test="endDate != null">
+				#{endDate,jdbcType=DATE},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="departmentName != null">
+				#{departmentName,jdbcType=VARCHAR},
+			</if>
+			<if test="post != null">
+				#{post,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
+		update tsc_work_content
+		<set>
+			<if test="workContent != null">
+				WORK_CONTENT = #{workContent,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeId != null">
+				RESUME_ID = #{resumeId,jdbcType=CHAR},
+			</if>
+			<if test="startDate != null">
+				START_DATE = #{startDate,jdbcType=DATE},
+			</if>
+			<if test="endDate != null">
+				END_DATE = #{endDate,jdbcType=DATE},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="departmentName != null">
+				DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+			</if>
+			<if test="post != null">
+				POST = #{post,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where CONTENT_ID = #{contentId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
+		update
+		tsc_work_content
+		set WORK_CONTENT = #{workContent,jdbcType=VARCHAR},
+		RESUME_ID = #{resumeId,jdbcType=CHAR},
+		START_DATE =
+		#{startDate,jdbcType=DATE},
+		END_DATE = #{endDate,jdbcType=DATE},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		DEPARTMENT_NAME =
+		#{departmentName,jdbcType=VARCHAR},
+		POST = #{post,jdbcType=VARCHAR}
+		where CONTENT_ID = #{contentId,jdbcType=CHAR}
+	</update>
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";">
+			update tsc_work_content
+			<set>
+				<if test="item.workContent != null">
+					WORK_CONTENT = #{item.workContent,jdbcType=VARCHAR},
+				</if>
+				<if test="item.resumeId != null">
+					RESUME_ID = #{item.resumeId,jdbcType=CHAR},
+				</if>
+				<if test="item.startDate != null">
+					START_DATE = #{item.startDate,jdbcType=DATE},
+				</if>
+				<if test="item.endDate != null">
+					END_DATE = #{item.endDate,jdbcType=DATE},
+				</if>
+				<if test="item.createTime != null">
+					CREATE_TIME = #{item.createTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.departmentName != null">
+					DEPARTMENT_NAME =
+					#{item.departmentName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.post != null">
+					POST = #{item.post,jdbcType=VARCHAR},
+				</if>
+			</set>
+			where CONTENT_ID = #{item.contentId,jdbcType=CHAR}
+		</foreach>
+	</update>
+	<insert id="insertBatch" parameterType="java.util.List">
+
+		insert into tsc_work_content
+		(CONTENT_ID, WORK_CONTENT, RESUME_ID,
+		START_DATE, END_DATE,
+		CREATE_TIME,
+		DEPARTMENT_NAME, POST)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.contentId,jdbcType=CHAR},
+			#{item.workContent,jdbcType=VARCHAR},
+			#{item.resumeId,jdbcType=CHAR},
+			#{item.startDate,jdbcType=DATE},
+			#{item.endDate,jdbcType=DATE},
+			#{item.createTime,jdbcType=TIMESTAMP},
+			#{item.departmentName,jdbcType=VARCHAR},
+			#{item.post,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from
+		tsc_work_content
+		where CONTENT_ID in
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item.contentId,jdbcType=CHAR}
+		</foreach>
+	</delete>
 </mapper>

@@ -1,5 +1,8 @@
 package com.accenture.subcontractor.job.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -9,8 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.util.StringUtils;
 
+import com.accenture.subcontractor.job.domain.Account;
+import com.accenture.subcontractor.job.domain.EducationResume;
 import com.accenture.subcontractor.job.domain.User;
+import com.accenture.subcontractor.job.persistence.EducationResumeMapper;
 import com.accenture.subcontractor.job.persistence.UserMapper;
+import com.accenture.subcontractor.job.service.AccountService;
 import com.accenture.subcontractor.job.service.UserService;
 
 @Service
@@ -19,7 +26,10 @@ public class UserServiceImpl implements UserService {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Resource
 	UserMapper userMapper;
-
+	@Resource
+	EducationResumeMapper educationResumeMapper;
+	@Resource
+	AccountService accountService;
 	@Override
 	public User getUserAndChildren(User user) {
 		String userId=user.getUserId();
@@ -39,8 +49,28 @@ public class UserServiceImpl implements UserService {
 			if(StringUtils.isEmpty(id)){
 				userId=userMapper.insertUserChildren(user);
 			}else{
-				userMapper.updateUserChildren(user);
-				userId=user.getUserId();
+				List<Account> accountList=accountService.selectAccountByUserId(id);
+				for(Account account:accountList){
+					//如果是微信类型的用户走下面的更新策略
+					if(null!=account.getAccountNumberType()&& account.getAccountNumberType().equals("W")){
+						userMapper.updateUserChildren(user);
+						List<EducationResume> educationResumeList=user.getEducationResumeList();
+						if(null!=educationResumeList&&educationResumeList.size()>0){
+							List<EducationResume> newEducationResumeList=new ArrayList<EducationResume>();
+							List<EducationResume> oldEducationResumeList=new ArrayList<EducationResume>();
+							for(EducationResume educationResume:educationResumeList){
+								if(null!=educationResume.getEducationResumeId()){
+									newEducationResumeList.add(educationResume);
+								}else{
+									oldEducationResumeList.add(educationResume);
+								}
+							}
+							
+						}
+						user.setAccountList(accountList);
+						userId=user.getUserId();
+					}
+				}
 			}
 			return userId;
 		} catch (Exception e) {

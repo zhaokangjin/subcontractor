@@ -1,17 +1,25 @@
 package com.accenture.subcontractor.job.persistence;
 
+import java.util.List;
+
 import com.accenture.subcontractor.job.domain.SkillType;
 
 public interface SkillTypeMapper {
-    int deleteByPrimaryKey(String skillId);
+	public abstract int deleteByPrimaryKey(String skillId);
 
-    int insert(SkillType record);
+    public abstract int insert(SkillType record);
 
-    int insertSelective(SkillType record);
+    public abstract int insertSelective(SkillType record);
 
-    SkillType selectByPrimaryKey(String skillId);
+    public abstract SkillType selectByPrimaryKey(String skillId);
 
-    int updateByPrimaryKeySelective(SkillType record);
+    public abstract int updateByPrimaryKeySelective(SkillType record);
 
-    int updateByPrimaryKey(SkillType record);
+    public abstract int updateByPrimaryKey(SkillType record);
+    
+	public abstract int insertBatch(List<SkillType> recordList);
+
+	public abstract int updateBatch(List<SkillType> recordList);
+
+	public abstract int deleteBatch(List<SkillType> recordList);
 }

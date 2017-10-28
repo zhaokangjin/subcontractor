@@ -19,14 +19,14 @@
 		<javaModelGenerator targetPackage="com.accenture.subcontractor.job.domain"
 			targetProject="subcontractor/src/main/java" />
 		<!-- 生成的映射文件报名和位置 -->
-		<sqlMapGenerator targetPackage="persistence_mapper"
+ 		<sqlMapGenerator targetPackage="persistence_mapper"
 			targetProject="subcontractor/src/main/resources" />
 		<!-- 生成DAO的包名和位置 -->
-		<javaClientGenerator targetPackage="com.accenture.subcontractor.job.persistence"
+ 		<javaClientGenerator targetPackage="com.accenture.subcontractor.job.persistence"
 			targetProject="subcontractor/src/main/java" type="XMLMAPPER" />
 		<!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->
 
-		<table tableName="tft_file_info" domainObjectName="FileInfo"
+	<!-- 	<table tableName="tft_file_info" domainObjectName="FileInfo"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
@@ -55,13 +55,13 @@
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table>
+		</table> -->
 		<table tableName="tpt_account" domainObjectName="Account"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false">
+			selectByExampleQueryId="true">
 		</table>
-		<table tableName="tpt_address" domainObjectName="Address"
+		<!-- <table tableName="tpt_address" domainObjectName="Address"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
@@ -176,7 +176,7 @@
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table>
+		</table> -->
 
 	</context>
 </generatorConfiguration>

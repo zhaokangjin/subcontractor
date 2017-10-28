@@ -1,17 +1,25 @@
 package com.accenture.subcontractor.job.persistence;
 
+import java.util.List;
+
 import com.accenture.subcontractor.job.domain.WorkResume;
 
 public interface WorkResumeMapper {
-    int deleteByPrimaryKey(String resumeId);
+	public abstract int deleteByPrimaryKey(String resumeId);
 
-    int insert(WorkResume record);
+    public abstract int insert(WorkResume record);
 
-    int insertSelective(WorkResume record);
+    public abstract int insertSelective(WorkResume record);
 
-    WorkResume selectByPrimaryKey(String resumeId);
+    public abstract WorkResume selectByPrimaryKey(String resumeId);
 
-    int updateByPrimaryKeySelective(WorkResume record);
+    public abstract int updateByPrimaryKeySelective(WorkResume record);
 
-    int updateByPrimaryKey(WorkResume record);
+    public abstract int updateByPrimaryKey(WorkResume record);
+    
+	public abstract int insertBatch(List<WorkResume> recordList);
+
+	public abstract int updateBatch(List<WorkResume> recordList);
+
+	public abstract int deleteBatch(List<WorkResume> recordList);
 }

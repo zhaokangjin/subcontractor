@@ -1,5 +1,7 @@
 package com.accenture.subcontractor.job.service.impl;
 
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -42,6 +44,7 @@ public class AccountServiceImpl implements AccountService {
 			User user=new User();
 			String userId=UUID.randomUUID().toString();
 			user.setUserId(userId);
+			user.setCreateTime(new Date());
 			userService.insert(user);
 			record.setUserId(userId);
 			return accountMapper.insert(record);
@@ -72,6 +75,15 @@ public class AccountServiceImpl implements AccountService {
 			throw e;
 		}
 	}
+	@Override
+	public List<Account> selectAccountByUserId(String userId) {
+		try {
+			return accountMapper.selectAccountByUserId(userId);
+		} catch (Exception e) {
+			logger.error("AccountServiceImpl>selectAccountByUserId>Exception:"+e);
+			throw e;
+		}
+	}
 
 	@Override
 	public int updateByPrimaryKeySelective(Account record) {
@@ -94,5 +106,6 @@ public class AccountServiceImpl implements AccountService {
 			throw e;
 		}
 	}
+
 
 }

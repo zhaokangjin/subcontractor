@@ -20,9 +20,11 @@
 		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		USER_ID, NAME, PHONE, IDENTITY_CARD, TRADE_ID, NATIVE_PLACE, DOMICILE,
+		USER_ID, NAME, PHONE, IDENTITY_CARD, TRADE_ID,
+		NATIVE_PLACE, DOMICILE,
 		INTRODUCTION,
-		MAIL, PASSWORD, ORGAN_ID, SEX, ROLE_ID, PERMISSION_ID, CREATE_TIME, MOBILE
+		MAIL, PASSWORD, ORGAN_ID, SEX,
+		ROLE_ID, PERMISSION_ID, CREATE_TIME, MOBILE
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
@@ -41,42 +43,57 @@
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from tpt_user
+		delete from
+		tpt_user
 		where USER_ID = #{userId,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.User">
-		insert into tpt_user (USER_ID, NAME, PHONE,
+		insert into tpt_user (USER_ID,
+		NAME, PHONE,
 		IDENTITY_CARD, TRADE_ID, NATIVE_PLACE,
-		DOMICILE, INTRODUCTION, MAIL,
+		DOMICILE,
+		INTRODUCTION, MAIL,
 		PASSWORD, ORGAN_ID, SEX, ROLE_ID,
-		PERMISSION_ID, CREATE_TIME, MOBILE
+		PERMISSION_ID,
+		CREATE_TIME, MOBILE
 		)
-		values (#{userId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR},
+		values (#{userId,jdbcType=CHAR},
+		#{name,jdbcType=VARCHAR},
 		#{phone,jdbcType=VARCHAR},
-		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR}, #{nativePlace,jdbcType=VARCHAR},
-		#{domicile,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR},
+		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR},
+		#{nativePlace,jdbcType=VARCHAR},
+		#{domicile,jdbcType=VARCHAR},
+		#{introduction,jdbcType=VARCHAR},
 		#{mail,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR}, #{sex,jdbcType=CHAR},
+		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR},
+		#{sex,jdbcType=CHAR},
 		#{roleId,jdbcType=CHAR},
-		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}
+		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{mobile,jdbcType=VARCHAR}
 		)
 	</insert>
 	<!-- 自定义插入方法 -->
 	<insert id="insertUserChildren" parameterType="com.accenture.subcontractor.job.domain.User">
-		insert into tpt_user (USER_ID, NAME, PHONE,
+		insert into
+		tpt_user (USER_ID, NAME, PHONE,
 		IDENTITY_CARD, TRADE_ID, NATIVE_PLACE,
 		DOMICILE, INTRODUCTION, MAIL,
 		PASSWORD, ORGAN_ID, SEX, ROLE_ID,
 		PERMISSION_ID, CREATE_TIME, MOBILE
 		)
-		values (#{userId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR},
+		values (#{userId,jdbcType=CHAR},
+		#{name,jdbcType=VARCHAR},
 		#{phone,jdbcType=VARCHAR},
-		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR}, #{nativePlace,jdbcType=VARCHAR},
-		#{domicile,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR},
+		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR},
+		#{nativePlace,jdbcType=VARCHAR},
+		#{domicile,jdbcType=VARCHAR},
+		#{introduction,jdbcType=VARCHAR},
 		#{mail,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR}, #{sex,jdbcType=CHAR},
+		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR},
+		#{sex,jdbcType=CHAR},
 		#{roleId,jdbcType=CHAR},
-		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}
+		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{mobile,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.User">
@@ -238,18 +255,25 @@
 		set NAME = #{name,jdbcType=VARCHAR},
 		PHONE = #{phone,jdbcType=VARCHAR},
 		IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
-		TRADE_ID = #{tradeId,jdbcType=CHAR},
-		NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
-		DOMICILE = #{domicile,jdbcType=VARCHAR},
-		INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+		TRADE_ID =
+		#{tradeId,jdbcType=CHAR},
+		NATIVE_PLACE =
+		#{nativePlace,jdbcType=VARCHAR},
+		DOMICILE =
+		#{domicile,jdbcType=VARCHAR},
+		INTRODUCTION =
+		#{introduction,jdbcType=VARCHAR},
 		MAIL = #{mail,jdbcType=VARCHAR},
 		PASSWORD = #{password,jdbcType=VARCHAR},
-		ORGAN_ID = #{organId,jdbcType=CHAR},
+		ORGAN_ID =
+		#{organId,jdbcType=CHAR},
 		SEX = #{sex,jdbcType=CHAR},
-		ROLE_ID = #{roleId,jdbcType=CHAR},
+		ROLE_ID =
+		#{roleId,jdbcType=CHAR},
 		PERMISSION_ID = #{permissionId,jdbcType=CHAR},
 		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-		MOBILE = #{mobile,jdbcType=VARCHAR}
+		MOBILE =
+		#{mobile,jdbcType=VARCHAR}
 		where USER_ID = #{userId,jdbcType=CHAR}
 	</update>
 	<!-- 自定义更新方法 -->
@@ -258,18 +282,34 @@
 		set NAME = #{name,jdbcType=VARCHAR},
 		PHONE = #{phone,jdbcType=VARCHAR},
 		IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
-		TRADE_ID = #{tradeId,jdbcType=CHAR},
-		NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
-		DOMICILE = #{domicile,jdbcType=VARCHAR},
-		INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+		TRADE_ID =
+		#{tradeId,jdbcType=CHAR},
+		NATIVE_PLACE =
+		#{nativePlace,jdbcType=VARCHAR},
+		DOMICILE =
+		#{domicile,jdbcType=VARCHAR},
+		INTRODUCTION =
+		#{introduction,jdbcType=VARCHAR},
 		MAIL = #{mail,jdbcType=VARCHAR},
 		PASSWORD = #{password,jdbcType=VARCHAR},
-		ORGAN_ID = #{organId,jdbcType=CHAR},
+		ORGAN_ID =
+		#{organId,jdbcType=CHAR},
 		SEX = #{sex,jdbcType=CHAR},
-		ROLE_ID = #{roleId,jdbcType=CHAR},
+		ROLE_ID =
+		#{roleId,jdbcType=CHAR},
 		PERMISSION_ID = #{permissionId,jdbcType=CHAR},
 		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-		MOBILE = #{mobile,jdbcType=VARCHAR}
+		MOBILE =
+		#{mobile,jdbcType=VARCHAR}
 		where USER_ID = #{userId,jdbcType=CHAR}
 	</update>
+	<update id="updateBatch" parameterType="java.util.List">
+
+	</update>
+	<insert id="insertBatch" parameterType="java.util.List">
+
+	</insert>
+	<delete id="deleteBatch" parameterType="java.util.List">
+
+	</delete>
 </mapper>
