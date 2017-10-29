@@ -1,7 +1,6 @@
 package com.accenture.subcontractor.job.service.impl;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accenture.subcontractor.job.common.util.data.PageUtils;
 import com.accenture.subcontractor.job.domain.FileInfo;
 import com.accenture.subcontractor.job.domain.condition.FileInfoConditon;
 import com.accenture.subcontractor.job.persistence.FileInfoMapper;
@@ -62,36 +60,36 @@ public class FileInfoServiceImpl implements FileInfoService {
 			throw e;
 		}
 	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void deleteByPrimaryKeySoft(String primaryKey) {
-		try {
-			fileInfoMapper.deleteByPrimaryKeySoft(primaryKey);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>deleteByPrimaryKey>>>error:"+e.getMessage());
-			throw e;
-		}	
-	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void deleteList(List<FileInfo> record) {
-		try {
-			fileInfoMapper.deleteList(record);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
-			throw e;
-		}
-	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void deleteListSoft(List<FileInfo> record) {
-		try {
-			fileInfoMapper.deleteListSoft(record);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
-			throw e;
-		}
-	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void deleteByPrimaryKeySoft(String primaryKey) {
+//		try {
+//			fileInfoMapper.deleteByPrimaryKeySoft(primaryKey);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>deleteByPrimaryKey>>>error:"+e.getMessage());
+//			throw e;
+//		}	
+//	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void deleteList(List<FileInfo> record) {
+//		try {
+//			fileInfoMapper.deleteList(record);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
+//			throw e;
+//		}
+//	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void deleteListSoft(List<FileInfo> record) {
+//		try {
+//			fileInfoMapper.deleteListSoft(record);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
+//			throw e;
+//		}
+//	}
 
 	@Override
 	@Transactional(rollbackFor=Exception.class)
@@ -115,25 +113,25 @@ public class FileInfoServiceImpl implements FileInfoService {
 		}
 		
 	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void updateList(List<FileInfo> record) {
-		if(null==record || record.size()==0){
-			return;
-		}
-		try {
-			//根据主键确定数据来源是新增还是更新
-			for(int i=0;i<record.size();i++){
-				if(null==record.get(i).getFileId()||record.get(i).getFileId().trim().equals("")){
-					record.get(i).setFileId(UUID.randomUUID().toString());
-				}
-			}
-			fileInfoMapper.updateList(record);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>updateBatch>>>error:"+e.getMessage());
-			throw e;
-		}
-	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void updateList(List<FileInfo> record) {
+//		if(null==record || record.size()==0){
+//			return;
+//		}
+//		try {
+//			//根据主键确定数据来源是新增还是更新
+//			for(int i=0;i<record.size();i++){
+//				if(null==record.get(i).getFileId()||record.get(i).getFileId().trim().equals("")){
+//					record.get(i).setFileId(UUID.randomUUID().toString());
+//				}
+//			}
+//			fileInfoMapper.updateList(record);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>updateBatch>>>error:"+e.getMessage());
+//			throw e;
+//		}
+//	}
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public FileInfo selectByPrimaryKey(String primaryKey) {
@@ -144,17 +142,42 @@ public class FileInfoServiceImpl implements FileInfoService {
 			throw e;
 		}
 	}
+//	@Override
+//	public PageInfo<FileInfo> queryList(FileInfoConditon  fileInfoConditon) throws Exception {
+//		try {
+//			FileInfo fileInfo=fileInfoConditon.getFileInfo();
+//			PageUtils.setPageByCondition(fileInfoConditon);
+//			List<FileInfo> list= fileInfoMapper.queryList(fileInfo);
+//			PageInfo<FileInfo> pageData = new PageInfo<FileInfo>(list);
+//			return pageData;
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>queryList>>>error:"+e.getMessage());
+//			throw e;
+//		}
+//	}
 	@Override
-	public PageInfo<FileInfo> queryList(FileInfoConditon  fileInfoConditon) throws Exception {
-		try {
-			FileInfo fileInfo=fileInfoConditon.getFileInfo();
-			PageUtils.setPageByCondition(fileInfoConditon);
-			List<FileInfo> list= fileInfoMapper.queryList(fileInfo);
-			PageInfo<FileInfo> pageData = new PageInfo<FileInfo>(list);
-			return pageData;
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>queryList>>>error:"+e.getMessage());
-			throw e;
-		}
+	public void deleteByPrimaryKeySoft(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteList(List<FileInfo> record) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteListSoft(List<FileInfo> record) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateList(List<FileInfo> record) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public PageInfo<FileInfo> queryList(FileInfoConditon fileInfoConditon) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

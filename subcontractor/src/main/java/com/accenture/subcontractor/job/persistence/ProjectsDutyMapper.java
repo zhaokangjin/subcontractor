@@ -5,21 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.ProjectsDuty;
 
 public interface ProjectsDutyMapper {
-	public abstract int deleteByPrimaryKey(String projectResponsibilityId);
+    int deleteByPrimaryKey(String projectResponsibilityId);
 
-    public abstract int insert(ProjectsDuty record);
+    int insert(ProjectsDuty record);
 
-    public abstract int insertSelective(ProjectsDuty record);
+    int insertSelective(ProjectsDuty record);
 
-    public abstract ProjectsDuty selectByPrimaryKey(String projectResponsibilityId);
+    ProjectsDuty selectByPrimaryKey(String projectResponsibilityId);
 
-    public abstract int updateByPrimaryKeySelective(ProjectsDuty record);
+    int updateByPrimaryKeySelective(ProjectsDuty record);
 
-    public abstract int updateByPrimaryKey(ProjectsDuty record);
+    int updateByPrimaryKey(ProjectsDuty record);
     
-	public abstract int insertBatch(List<ProjectsDuty> recordList);
+	void insertBatch(List<ProjectsDuty> recordList);
 
-	public abstract int updateBatch(List<ProjectsDuty> recordList);
+	void deleteBatch(List<ProjectsDuty> recordList);
 
-	public abstract int deleteBatch(List<ProjectsDuty> recordList);
+	void updateBatch(List<ProjectsDuty> recordList);
 }

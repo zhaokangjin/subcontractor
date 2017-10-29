@@ -22,5 +22,7 @@ public interface UserService {
     
 	public abstract int updateUserChildren(User record);
 
-	public abstract int updateByPrimaryKey(User record);	
+	public abstract int updateByPrimaryKey(User record);
+
+	public abstract User getUserByKey(String userId);	
 }

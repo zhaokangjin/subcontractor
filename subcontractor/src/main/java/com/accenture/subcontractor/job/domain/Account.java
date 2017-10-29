@@ -2,11 +2,14 @@ package com.accenture.subcontractor.job.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Account extends AccountKey {
     // 描述 >>>表字段 : DESCR
     private String descr;
 
     // 创建时间 >>>表字段 : CREATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     // 删除标记 >>>表字段 : DELETE_FLAG
@@ -23,6 +26,13 @@ public class Account extends AccountKey {
 
     // 注册地 >>>表字段 : REGISTER_ADDRESS
     private String registerAddress;
+
+    // 最后修改人 >>>表字段 : LAST_UPDATE_PERSON
+    private String lastUpdatePerson;
+
+    // 最后修改时间 >>>表字段 : LAST_UPDATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastUpdateTime;
 
     public String getDescr() {
         return descr;
@@ -78,5 +88,21 @@ public class Account extends AccountKey {
 
     public void setRegisterAddress(String registerAddress) {
         this.registerAddress = registerAddress;
+    }
+
+    public String getLastUpdatePerson() {
+        return lastUpdatePerson;
+    }
+
+    public void setLastUpdatePerson(String lastUpdatePerson) {
+        this.lastUpdatePerson = lastUpdatePerson;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
     }
 }

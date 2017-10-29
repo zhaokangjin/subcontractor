@@ -5,21 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.Organization;
 
 public interface OrganizationMapper {
-	public abstract int deleteByPrimaryKey(String organId);
+    int deleteByPrimaryKey(String organId);
 
-	public abstract int insert(Organization record);
+    int insert(Organization record);
 
-	public abstract int insertSelective(Organization record);
+    int insertSelective(Organization record);
 
-	public abstract Organization selectByPrimaryKey(String organId);
+    Organization selectByPrimaryKey(String organId);
 
-	public abstract int updateByPrimaryKeySelective(Organization record);
+    int updateByPrimaryKeySelective(Organization record);
 
-	public abstract int updateByPrimaryKey(Organization record);
+    int updateByPrimaryKey(Organization record);
     
-	public abstract int insertBatch(List<Organization> recordList);
+	void insertBatch(List<Organization> recordList);
 
-	public abstract int updateBatch(List<Organization> recordList);
+	void deleteBatch(List<Organization> recordList);
 
-	public abstract int deleteBatch(List<Organization> recordList);
+	void updateBatch(List<Organization> recordList);
 }

@@ -18,83 +18,42 @@
 		<result column="PERMISSION_ID" jdbcType="CHAR" property="permissionId" />
 		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="DELETE_FLAG" jdbcType="CHAR" property="deleteFlag" />
+		<result column="CREATOR" jdbcType="CHAR" property="creator" />
+		<result column="LAST_UPDATE_PERSON" jdbcType="TIMESTAMP" property="lastUpdatePerson" />
+		<result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+		<result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		USER_ID, NAME, PHONE, IDENTITY_CARD, TRADE_ID,
-		NATIVE_PLACE, DOMICILE,
-		INTRODUCTION,
-		MAIL, PASSWORD, ORGAN_ID, SEX,
-		ROLE_ID, PERMISSION_ID, CREATE_TIME, MOBILE
+		USER_ID, NAME, PHONE, IDENTITY_CARD, TRADE_ID, NATIVE_PLACE, DOMICILE, INTRODUCTION,
+		MAIL, PASSWORD, ORGAN_ID, SEX, ROLE_ID, PERMISSION_ID, CREATE_TIME, MOBILE, DELETE_FLAG,
+		CREATOR, LAST_UPDATE_PERSON, LAST_UPDATE_TIME,BIRTHDAY
 	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.String"
-		resultMap="BaseResultMap">
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from tpt_user
 		where USER_ID = #{userId,jdbcType=CHAR}
 	</select>
-	<!-- 自定义查询方法 -->
-	<select id="getUserAndChildren" parameterType="java.lang.String"
-		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from tpt_user
-		where USER_ID = #{userId,jdbcType=CHAR}
-	</select>
-
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from
-		tpt_user
+		delete from tpt_user
 		where USER_ID = #{userId,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.User">
-		insert into tpt_user (USER_ID,
-		NAME, PHONE,
-		IDENTITY_CARD, TRADE_ID, NATIVE_PLACE,
-		DOMICILE,
-		INTRODUCTION, MAIL,
-		PASSWORD, ORGAN_ID, SEX, ROLE_ID,
-		PERMISSION_ID,
-		CREATE_TIME, MOBILE
-		)
-		values (#{userId,jdbcType=CHAR},
-		#{name,jdbcType=VARCHAR},
-		#{phone,jdbcType=VARCHAR},
-		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR},
-		#{nativePlace,jdbcType=VARCHAR},
-		#{domicile,jdbcType=VARCHAR},
-		#{introduction,jdbcType=VARCHAR},
-		#{mail,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR},
-		#{sex,jdbcType=CHAR},
-		#{roleId,jdbcType=CHAR},
-		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
-		#{mobile,jdbcType=VARCHAR}
-		)
-	</insert>
-	<!-- 自定义插入方法 -->
-	<insert id="insertUserChildren" parameterType="com.accenture.subcontractor.job.domain.User">
-		insert into
-		tpt_user (USER_ID, NAME, PHONE,
+		insert into tpt_user (USER_ID, NAME, PHONE,
 		IDENTITY_CARD, TRADE_ID, NATIVE_PLACE,
 		DOMICILE, INTRODUCTION, MAIL,
 		PASSWORD, ORGAN_ID, SEX, ROLE_ID,
-		PERMISSION_ID, CREATE_TIME, MOBILE
-		)
-		values (#{userId,jdbcType=CHAR},
-		#{name,jdbcType=VARCHAR},
-		#{phone,jdbcType=VARCHAR},
-		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR},
-		#{nativePlace,jdbcType=VARCHAR},
-		#{domicile,jdbcType=VARCHAR},
-		#{introduction,jdbcType=VARCHAR},
-		#{mail,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR},
-		#{sex,jdbcType=CHAR},
-		#{roleId,jdbcType=CHAR},
-		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
-		#{mobile,jdbcType=VARCHAR}
-		)
+		PERMISSION_ID, CREATE_TIME, MOBILE,
+		DELETE_FLAG, CREATOR, LAST_UPDATE_PERSON,
+		LAST_UPDATE_TIME,BIRTHDAY)
+		values (#{userId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{identityCard,jdbcType=VARCHAR}, #{tradeId,jdbcType=CHAR}, #{nativePlace,jdbcType=VARCHAR},
+		#{domicile,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{organId,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, #{roleId,jdbcType=CHAR},
+		#{permissionId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR},
+		#{deleteFlag,jdbcType=CHAR}, #{creator,jdbcType=CHAR}, #{lastUpdatePerson,jdbcType=TIMESTAMP},
+		#{lastUpdateTime,jdbcType=TIMESTAMP},#{birthday,jdbcType=DATE})
 	</insert>
 	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.User">
 		insert into tpt_user
@@ -147,6 +106,21 @@
 			<if test="mobile != null">
 				MOBILE,
 			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG,
+			</if>
+			<if test="creator != null">
+				CREATOR,
+			</if>
+			<if test="lastUpdatePerson != null">
+				LAST_UPDATE_PERSON,
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME,
+			</if>
+			<if test="birthday != null">
+				BIRTHDAY,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="userId != null">
@@ -196,6 +170,21 @@
 			</if>
 			<if test="mobile != null">
 				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFlag != null">
+				#{deleteFlag,jdbcType=CHAR},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=CHAR},
+			</if>
+			<if test="lastUpdatePerson != null">
+				#{lastUpdatePerson,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastUpdateTime != null">
+				#{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=DATE},
 			</if>
 		</trim>
 	</insert>
@@ -247,6 +236,21 @@
 			<if test="mobile != null">
 				MOBILE = #{mobile,jdbcType=VARCHAR},
 			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR = #{creator,jdbcType=CHAR},
+			</if>
+			<if test="lastUpdatePerson != null">
+				LAST_UPDATE_PERSON = #{lastUpdatePerson,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="birthday != null">
+				BIRTHDAY = #{birthday,jdbcType=DATE},
+			</if>
 		</set>
 		where USER_ID = #{userId,jdbcType=CHAR}
 	</update>
@@ -255,61 +259,23 @@
 		set NAME = #{name,jdbcType=VARCHAR},
 		PHONE = #{phone,jdbcType=VARCHAR},
 		IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
-		TRADE_ID =
-		#{tradeId,jdbcType=CHAR},
-		NATIVE_PLACE =
-		#{nativePlace,jdbcType=VARCHAR},
-		DOMICILE =
-		#{domicile,jdbcType=VARCHAR},
-		INTRODUCTION =
-		#{introduction,jdbcType=VARCHAR},
+		TRADE_ID = #{tradeId,jdbcType=CHAR},
+		NATIVE_PLACE = #{nativePlace,jdbcType=VARCHAR},
+		DOMICILE = #{domicile,jdbcType=VARCHAR},
+		INTRODUCTION = #{introduction,jdbcType=VARCHAR},
 		MAIL = #{mail,jdbcType=VARCHAR},
 		PASSWORD = #{password,jdbcType=VARCHAR},
-		ORGAN_ID =
-		#{organId,jdbcType=CHAR},
+		ORGAN_ID = #{organId,jdbcType=CHAR},
 		SEX = #{sex,jdbcType=CHAR},
-		ROLE_ID =
-		#{roleId,jdbcType=CHAR},
+		ROLE_ID = #{roleId,jdbcType=CHAR},
 		PERMISSION_ID = #{permissionId,jdbcType=CHAR},
 		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-		MOBILE =
-		#{mobile,jdbcType=VARCHAR}
+		MOBILE = #{mobile,jdbcType=VARCHAR},
+		DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
+		CREATOR = #{creator,jdbcType=CHAR},
+		LAST_UPDATE_PERSON = #{lastUpdatePerson,jdbcType=TIMESTAMP},
+		LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+		BIRTHDAY = #{birthday,jdbcType=DATE}
 		where USER_ID = #{userId,jdbcType=CHAR}
 	</update>
-	<!-- 自定义更新方法 -->
-	<update id="updateUserChildren" parameterType="com.accenture.subcontractor.job.domain.User">
-		update tpt_user
-		set NAME = #{name,jdbcType=VARCHAR},
-		PHONE = #{phone,jdbcType=VARCHAR},
-		IDENTITY_CARD = #{identityCard,jdbcType=VARCHAR},
-		TRADE_ID =
-		#{tradeId,jdbcType=CHAR},
-		NATIVE_PLACE =
-		#{nativePlace,jdbcType=VARCHAR},
-		DOMICILE =
-		#{domicile,jdbcType=VARCHAR},
-		INTRODUCTION =
-		#{introduction,jdbcType=VARCHAR},
-		MAIL = #{mail,jdbcType=VARCHAR},
-		PASSWORD = #{password,jdbcType=VARCHAR},
-		ORGAN_ID =
-		#{organId,jdbcType=CHAR},
-		SEX = #{sex,jdbcType=CHAR},
-		ROLE_ID =
-		#{roleId,jdbcType=CHAR},
-		PERMISSION_ID = #{permissionId,jdbcType=CHAR},
-		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-		MOBILE =
-		#{mobile,jdbcType=VARCHAR}
-		where USER_ID = #{userId,jdbcType=CHAR}
-	</update>
-	<update id="updateBatch" parameterType="java.util.List">
-
-	</update>
-	<insert id="insertBatch" parameterType="java.util.List">
-
-	</insert>
-	<delete id="deleteBatch" parameterType="java.util.List">
-
-	</delete>
 </mapper>

@@ -9,7 +9,7 @@ public interface AccountService {
 
 	public abstract int deleteByPrimaryKey(AccountKey key);
 
-	public abstract int insert(Account record);
+	public abstract void register(Account record);
 
 	public abstract int insertSelective(Account record);
 
@@ -20,5 +20,6 @@ public interface AccountService {
 	public abstract int updateByPrimaryKeySelective(Account record);
 
 	public abstract int updateByPrimaryKey(Account record);
+
 
 }

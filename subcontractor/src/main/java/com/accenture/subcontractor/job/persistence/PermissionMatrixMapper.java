@@ -1,12 +1,26 @@
 package com.accenture.subcontractor.job.persistence;
 
+import java.util.List;
+
+import com.accenture.subcontractor.job.domain.PermissionMatrix;
 import com.accenture.subcontractor.job.domain.PermissionMatrixKey;
 
 public interface PermissionMatrixMapper {
-	public abstract int deleteByPrimaryKey(PermissionMatrixKey key);
+    int deleteByPrimaryKey(PermissionMatrixKey key);
 
-    public abstract int insert(PermissionMatrixKey record);
+    int insert(PermissionMatrix record);
 
-    public abstract int insertSelective(PermissionMatrixKey record);
+    int insertSelective(PermissionMatrix record);
 
+    PermissionMatrix selectByPrimaryKey(PermissionMatrixKey key);
+
+    int updateByPrimaryKeySelective(PermissionMatrix record);
+
+    int updateByPrimaryKey(PermissionMatrix record);
+    
+	void insertBatch(List<PermissionMatrix> recordList);
+
+	void deleteBatch(List<PermissionMatrix> recordList);
+
+	void updateBatch(List<PermissionMatrix> recordList);
 }

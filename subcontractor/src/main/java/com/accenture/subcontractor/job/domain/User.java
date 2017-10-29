@@ -39,7 +39,7 @@ public class User {
     // 组织ID >>>表字段 : ORGAN_ID
     private String organId;
 
-    // 性别 >>>表字段 : SEX
+    // 性别—M（男）性;F（表示女性） >>>表字段 : SEX
     private String sex;
 
     // 角色ID >>>表字段 : ROLE_ID
@@ -54,23 +54,34 @@ public class User {
 
     // 手机 >>>表字段 : MOBILE
     private String mobile;
+
+    // 删除标记 >>>表字段 : DELETE_FLAG
+    private String deleteFlag;
+
+    // 创建人 >>>表字段 : CREATOR
+    private String creator;
+
+    // 最后修改人 >>>表字段 : LAST_UPDATE_PERSON
+    private String lastUpdatePerson;
     
-    // 账号表
+    // 生日 >>>表字段 : BIRTHDAY
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    private Date birthday;
+
+    // 最后修改时间 >>>表字段 : LAST_UPDATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastUpdateTime;
+
     private List<Account> accountList;
     
-    //技能表
     private List<Skill> skillList;
     
-    //工作履历表
     private List<WorkResume> workResumeList;
     
-    //教育履历表
-    private List<EducationResume>  educationResumeList;
+    private List<EducationResume> educationResumeList;
     
-    //项目履历表
     private List<ProjectResume> projectResumeList;
     
-
     public String getUserId() {
         return userId;
     }
@@ -238,4 +249,45 @@ public class User {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+	public String getLastUpdatePerson() {
+		return lastUpdatePerson;
+	}
+
+	public void setLastUpdatePerson(String lastUpdatePerson) {
+		this.lastUpdatePerson = lastUpdatePerson;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 }

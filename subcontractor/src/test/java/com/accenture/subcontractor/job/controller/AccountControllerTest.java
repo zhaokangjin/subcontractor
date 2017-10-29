@@ -31,10 +31,11 @@ public class AccountControllerTest {
 	 *            "http://wx.qlogo.cn/mmopen/JcDicrZBlREhnNXZRudod9PmibRkIs5K2f1tUQ7lFjC63pYHaXGxNDgMzjGDEuvzYZbFOqtUXaxSdoZG6iane5ko9H30krIbzGv/0",
 	 *            "subscribe_time": 1386160805 }
 		 */
+		
 		accountInfo.put("subscribe", "1");
-		accountInfo.put("openid", "ALBNpjqs2BhvzwPj5A-vTYAX4GLW");
-		accountInfo.put("nickname", "哈啰kity");
-		accountInfo.put("sex", "F");
+		accountInfo.put("openid", "oLVPpjqs2BhvzwPj5A-vTYAX4GLc");
+		accountInfo.put("nickname", "刺猬宝宝");
+		accountInfo.put("sex", "M");
 		accountInfo.put("language", "CN");
 		accountInfo.put("headimgurl", "http://wx.qlogo.cn/mmopen/JcDicrZBlREhnNXZRudod9PmibRkIs5K2f1tUQ7lFjC63pYHaXGxNDgMzjGDEuvzYZbFOqtUXaxSdoZG6iane5ko9H30krIbzGv/0");
 		accountInfo.put("subscribe_time", "1326160805");

@@ -5,21 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.InternationalItem;
 
 public interface InternationalItemMapper {
-	public abstract int deleteByPrimaryKey(String itemId);
+    int deleteByPrimaryKey(String itemId);
 
-	public abstract int insert(InternationalItem record);
+    int insert(InternationalItem record);
 
-	public abstract int insertSelective(InternationalItem record);
+    int insertSelective(InternationalItem record);
 
-	public abstract InternationalItem selectByPrimaryKey(String itemId);
+    InternationalItem selectByPrimaryKey(String itemId);
 
-	public abstract int updateByPrimaryKeySelective(InternationalItem record);
+    int updateByPrimaryKeySelective(InternationalItem record);
 
-	public abstract int updateByPrimaryKey(InternationalItem record);
+    int updateByPrimaryKey(InternationalItem record);
     
-	public abstract int insertBatch(List<InternationalItem> recordList);
+	void insertBatch(List<InternationalItem> recordList);
 
-	public abstract int updateBatch(List<InternationalItem> recordList);
+	void deleteBatch(List<InternationalItem> recordList);
 
-	public abstract int deleteBatch(List<InternationalItem> recordList);
+	void updateBatch(List<InternationalItem> recordList);
 }

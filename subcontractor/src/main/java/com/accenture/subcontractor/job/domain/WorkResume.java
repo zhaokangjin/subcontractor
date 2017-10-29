@@ -29,8 +29,20 @@ public class WorkResume {
     // 创建时间 >>>表字段 : CREATE_TIME
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    // 删除标记 >>>表字段 : DELETE_FLAG
+    private String deleteFlag;
+
+    // 最后修改人 >>>表字段 : LAST_UPDATE_PERSON
+    private String lastUpdatePerson;
+
+    // 最后修改时间 >>>表字段 : LAST_UPDATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastUpdateTime;
+
+    // 创建人 >>>表字段 : CREATOR
+    private String creator;
     
-    // 工作内容表
     private List<WorkContent> workContentList;
 
     public String getResumeId() {
@@ -87,6 +99,38 @@ public class WorkResume {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public String getLastUpdatePerson() {
+        return lastUpdatePerson;
+    }
+
+    public void setLastUpdatePerson(String lastUpdatePerson) {
+        this.lastUpdatePerson = lastUpdatePerson;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
 	public List<WorkContent> getWorkContentList() {

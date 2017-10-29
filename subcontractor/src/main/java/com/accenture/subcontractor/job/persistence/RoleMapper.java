@@ -1,17 +1,25 @@
 package com.accenture.subcontractor.job.persistence;
 
+import java.util.List;
+
 import com.accenture.subcontractor.job.domain.Role;
 
 public interface RoleMapper {
-	public abstract int deleteByPrimaryKey(String roleId);
+    int deleteByPrimaryKey(String roleId);
 
-	public abstract int insert(Role record);
+    int insert(Role record);
 
-	public abstract int insertSelective(Role record);
+    int insertSelective(Role record);
 
-	public abstract Role selectByPrimaryKey(String roleId);
+    Role selectByPrimaryKey(String roleId);
 
-	public abstract int updateByPrimaryKeySelective(Role record);
+    int updateByPrimaryKeySelective(Role record);
 
-	public abstract int updateByPrimaryKey(Role record);
+    int updateByPrimaryKey(Role record);
+    
+	void insertBatch(List<Role> recordList);
+
+	void deleteBatch(List<Role> recordList);
+
+	void updateBatch(List<Role> recordList);
 }

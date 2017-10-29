@@ -22,7 +22,13 @@ public class WorkContentServiceImpl implements WorkContentService {
 	WorkContentMapper workContentMapper;
 	@Override
 	public void deleteBatch(List<WorkContent> recordList) {
-		workContentMapper.deleteBatch(recordList);
+		try {
+			workContentMapper.deleteBatch(recordList);
+		} catch (Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			logger.error("WorkContentServiceImpl>deleteBatch>Exception:"+e);
+			throw e;
+		}
 	}
 	@Override
 	@Transactional(rollbackFor=Exception.class)
@@ -37,7 +43,13 @@ public class WorkContentServiceImpl implements WorkContentService {
 	}
 	@Override
 	public void updateBatch(List<WorkContent> recordList) {
-		workContentMapper.insertBatch(recordList);
+		try {
+			workContentMapper.updateBatch(recordList);
+		} catch (Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			logger.error("WorkContentServiceImpl>updateBatch>Exception:"+e);
+			throw e;
+		}
 	}
 
 }

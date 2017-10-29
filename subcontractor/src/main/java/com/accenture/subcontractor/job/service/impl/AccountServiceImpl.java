@@ -27,30 +27,40 @@ public class AccountServiceImpl implements AccountService {
 	AccountMapper accountMapper;
 	@Resource
 	UserService userService;
+
 	@Override
 	public int deleteByPrimaryKey(AccountKey key) {
 		try {
 			return accountMapper.deleteByPrimaryKey(key);
 		} catch (Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			logger.error("AccountServiceImpl>deleteByPrimaryKey>Exception:"+e);
+			logger.error("AccountServiceImpl>deleteByPrimaryKey>Exception:" + e);
 			throw e;
 		}
 	}
 
 	@Override
-	public int insert(Account record) {
+	public void register(Account record) {
 		try {
-			User user=new User();
-			String userId=UUID.randomUUID().toString();
-			user.setUserId(userId);
-			user.setCreateTime(new Date());
-			userService.insert(user);
-			record.setUserId(userId);
-			return accountMapper.insert(record);
+
+			
+			Account account=accountMapper.selectByPrimaryKey(record);
+			if(null!=account){
+				accountMapper.updateByPrimaryKey(record);
+			}else{
+				User user = new User();
+				String userId = UUID.randomUUID().toString();
+				user.setUserId(userId);
+				user.setCreateTime(new Date());
+				user.setDeleteFlag("N");
+				userService.insert(user);
+				record.setUserId(userId);
+				accountMapper.insert(record);
+			}
+			
 		} catch (Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			logger.error("AccountServiceImpl>insert>Exception:"+e);
+			logger.error("AccountServiceImpl>insert>Exception:" + e);
 			throw e;
 		}
 	}
@@ -61,7 +71,7 @@ public class AccountServiceImpl implements AccountService {
 			return accountMapper.insertSelective(record);
 		} catch (Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			logger.error("AccountServiceImpl>insertSelective>Exception:"+e);
+			logger.error("AccountServiceImpl>insertSelective>Exception:" + e);
 			throw e;
 		}
 	}
@@ -71,19 +81,19 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			return accountMapper.selectByPrimaryKey(key);
 		} catch (Exception e) {
-			logger.error("AccountServiceImpl>selectByPrimaryKey>Exception:"+e);
+			logger.error("AccountServiceImpl>selectByPrimaryKey>Exception:" + e);
 			throw e;
 		}
 	}
-	@Override
-	public List<Account> selectAccountByUserId(String userId) {
-		try {
-			return accountMapper.selectAccountByUserId(userId);
-		} catch (Exception e) {
-			logger.error("AccountServiceImpl>selectAccountByUserId>Exception:"+e);
-			throw e;
-		}
-	}
+	// @Override
+	// public List<Account> selectAccountByUserId(String userId) {
+	// try {
+	// return accountMapper.selectAccountByUserId(userId);
+	// } catch (Exception e) {
+	// logger.error("AccountServiceImpl>selectAccountByUserId>Exception:"+e);
+	// throw e;
+	// }
+	// }
 
 	@Override
 	public int updateByPrimaryKeySelective(Account record) {
@@ -91,7 +101,7 @@ public class AccountServiceImpl implements AccountService {
 			return accountMapper.updateByPrimaryKey(record);
 		} catch (Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			logger.error("AccountServiceImpl>updateByPrimaryKeySelective>Exception:"+e);
+			logger.error("AccountServiceImpl>updateByPrimaryKeySelective>Exception:" + e);
 			throw e;
 		}
 	}
@@ -102,10 +112,15 @@ public class AccountServiceImpl implements AccountService {
 			return accountMapper.updateByPrimaryKey(record);
 		} catch (Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			logger.error("AccountServiceImpl>updateByPrimaryKey>Exception:"+e);
+			logger.error("AccountServiceImpl>updateByPrimaryKey>Exception:" + e);
 			throw e;
 		}
 	}
 
+	@Override
+	public List<Account> selectAccountByUserId(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

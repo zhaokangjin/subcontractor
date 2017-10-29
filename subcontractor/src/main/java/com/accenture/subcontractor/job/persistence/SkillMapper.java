@@ -5,21 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.Skill;
 
 public interface SkillMapper {
-	public abstract int deleteByPrimaryKey(String professionSkillId);
+    int deleteByPrimaryKey(String professionSkillId);
 
-    public abstract int insert(Skill record);
+    int insert(Skill record);
 
-    public abstract int insertSelective(Skill record);
+    int insertSelective(Skill record);
 
-    public abstract Skill selectByPrimaryKey(String professionSkillId);
+    Skill selectByPrimaryKey(String professionSkillId);
 
-    public abstract int updateByPrimaryKeySelective(Skill record);
+    int updateByPrimaryKeySelective(Skill record);
 
-    public abstract int updateByPrimaryKey(Skill record);
+    int updateByPrimaryKey(Skill record);
     
-	public abstract int insertBatch(List<Skill> recordList);
+	void insertBatch(List<Skill> recordList);
 
-	public abstract int updateBatch(List<Skill> recordList);
+	void deleteBatch(List<Skill> recordList);
 
-	public abstract int deleteBatch(List<Skill> recordList);
+	void updateBatch(List<Skill> recordList);
 }

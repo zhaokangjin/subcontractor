@@ -5,21 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.DictionariesItem;
 
 public interface DictionariesItemMapper {
-	public abstract int deleteByPrimaryKey(String itemCode);
+	int deleteByPrimaryKey(String itemCode);
 
-	public abstract int insert(DictionariesItem record);
+	int insert(DictionariesItem record);
 
-	public abstract int insertSelective(DictionariesItem record);
+	int insertSelective(DictionariesItem record);
 
-	public abstract DictionariesItem selectByPrimaryKey(String itemCode);
+	DictionariesItem selectByPrimaryKey(String itemCode);
 
-	public abstract int updateByPrimaryKeySelective(DictionariesItem record);
+	int updateByPrimaryKeySelective(DictionariesItem record);
 
-	public abstract int updateByPrimaryKey(DictionariesItem record);
+	int updateByPrimaryKey(DictionariesItem record);
 
-	public abstract int insertBatch(List<DictionariesItem> recordList);
+	void insertBatch(List<DictionariesItem> recordList);
 
-	public abstract int updateBatch(List<DictionariesItem> recordList);
+	void deleteBatch(List<DictionariesItem> recordList);
 
-	public abstract int deleteBatch(List<DictionariesItem> recordList);
+	void updateBatch(List<DictionariesItem> recordList);
 }

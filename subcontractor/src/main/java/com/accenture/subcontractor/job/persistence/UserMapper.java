@@ -5,28 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.User;
 
 public interface UserMapper {
-	public abstract int deleteByPrimaryKey(String userId);
+    int deleteByPrimaryKey(String userId);
 
-	public abstract int insert(User record);
+    int insert(User record);
 
-	public abstract String insertUserChildren(User record);
+    int insertSelective(User record);
 
-	public abstract int insertSelective(User record);
+    User selectByPrimaryKey(String userId);
 
-	public abstract User selectByPrimaryKey(String userId);
+    int updateByPrimaryKeySelective(User record);
 
-	public abstract User getUserAndChildren(String userId);
+    int updateByPrimaryKey(User record);
+    
+	void insertBatch(List<User> recordList);
 
-	public abstract int updateByPrimaryKeySelective(User record);
+	void deleteBatch(List<User> recordList);
 
-	public abstract int updateUserChildren(User record);
-
-	public abstract int updateByPrimaryKey(User record);
-	
-	public abstract int insertBatch(List<User> recordList);
-
-	public abstract int updateBatch(List<User> recordList);
-
-	public abstract int deleteBatch(List<User> recordList);
-
+	void updateBatch(List<User> recordList);
 }

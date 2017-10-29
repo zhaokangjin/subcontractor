@@ -1,83 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.accenture.subcontractor.job.persistence.SkillTypeMapper">
-	<resultMap id="BaseResultMap"
-		type="com.accenture.subcontractor.job.domain.SkillType">
-		<id column="SKILL_ID" jdbcType="CHAR" property="skillId" />
-		<result column="SKILL_NAME" jdbcType="VARCHAR" property="skillName" />
-		<result column="COLOR" jdbcType="CHAR" property="color" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		SKILL_ID, SKILL_NAME, COLOR
-	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.String"
-		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from tpt_skill_type
-		where SKILL_ID = #{skillId,jdbcType=CHAR}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from tpt_skill_type
-		where SKILL_ID = #{skillId,jdbcType=CHAR}
-	</delete>
-	<insert id="insert" parameterType="com.accenture.subcontractor.job.domain.SkillType">
-		insert into tpt_skill_type (SKILL_ID, SKILL_NAME, COLOR
-		)
-		values (#{skillId,jdbcType=CHAR}, #{skillName,jdbcType=VARCHAR},
-		#{color,jdbcType=CHAR}
-		)
-	</insert>
-	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.SkillType">
-		insert into tpt_skill_type
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="skillId != null">
-				SKILL_ID,
-			</if>
-			<if test="skillName != null">
-				SKILL_NAME,
-			</if>
-			<if test="color != null">
-				COLOR,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="skillId != null">
-				#{skillId,jdbcType=CHAR},
-			</if>
-			<if test="skillName != null">
-				#{skillName,jdbcType=VARCHAR},
-			</if>
-			<if test="color != null">
-				#{color,jdbcType=CHAR},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.SkillType">
-		update tpt_skill_type
-		<set>
-			<if test="skillName != null">
-				SKILL_NAME = #{skillName,jdbcType=VARCHAR},
-			</if>
-			<if test="color != null">
-				COLOR = #{color,jdbcType=CHAR},
-			</if>
-		</set>
-		where SKILL_ID = #{skillId,jdbcType=CHAR}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.SkillType">
-		update tpt_skill_type
-		set SKILL_NAME = #{skillName,jdbcType=VARCHAR},
-		COLOR = #{color,jdbcType=CHAR}
-		where SKILL_ID = #{skillId,jdbcType=CHAR}
-	</update>
-	<update id="updateBatch" parameterType="java.util.List">
-
-	</update>
-	<insert id="insertBatch" parameterType="java.util.List">
-
-	</insert>
-	<delete id="deleteBatch" parameterType="java.util.List">
-
-	</delete>
+  <resultMap id="BaseResultMap" type="com.accenture.subcontractor.job.domain.SkillType">
+    <id column="SKILL_ID" jdbcType="CHAR" property="skillId" />
+    <result column="SKILL_NAME" jdbcType="VARCHAR" property="skillName" />
+    <result column="COLOR" jdbcType="CHAR" property="color" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SKILL_ID, SKILL_NAME, COLOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tpt_skill_type
+    where SKILL_ID = #{skillId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tpt_skill_type
+    where SKILL_ID = #{skillId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.accenture.subcontractor.job.domain.SkillType">
+    insert into tpt_skill_type (SKILL_ID, SKILL_NAME, COLOR
+      )
+    values (#{skillId,jdbcType=CHAR}, #{skillName,jdbcType=VARCHAR}, #{color,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.SkillType">
+    insert into tpt_skill_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skillId != null">
+        SKILL_ID,
+      </if>
+      <if test="skillName != null">
+        SKILL_NAME,
+      </if>
+      <if test="color != null">
+        COLOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skillId != null">
+        #{skillId,jdbcType=CHAR},
+      </if>
+      <if test="skillName != null">
+        #{skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accenture.subcontractor.job.domain.SkillType">
+    update tpt_skill_type
+    <set>
+      <if test="skillName != null">
+        SKILL_NAME = #{skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        COLOR = #{color,jdbcType=CHAR},
+      </if>
+    </set>
+    where SKILL_ID = #{skillId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accenture.subcontractor.job.domain.SkillType">
+    update tpt_skill_type
+    set SKILL_NAME = #{skillName,jdbcType=VARCHAR},
+      COLOR = #{color,jdbcType=CHAR}
+    where SKILL_ID = #{skillId,jdbcType=CHAR}
+  </update>
 </mapper>

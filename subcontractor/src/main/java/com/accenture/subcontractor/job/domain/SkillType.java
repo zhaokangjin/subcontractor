@@ -1,7 +1,5 @@
 package com.accenture.subcontractor.job.domain;
 
-import java.util.List;
-
 public class SkillType {
     // 技能ID >>>表字段 : SKILL_ID
     private String skillId;
@@ -11,9 +9,6 @@ public class SkillType {
 
     // 颜色 >>>表字段 : COLOR
     private String color;
-    
-    //技能表
-    private List<Skill> skillList;
 
     public String getSkillId() {
         return skillId;
@@ -38,12 +33,4 @@ public class SkillType {
     public void setColor(String color) {
         this.color = color;
     }
-
-	public List<Skill> getSkillList() {
-		return skillList;
-	}
-
-	public void setSkillList(List<Skill> skillList) {
-		this.skillList = skillList;
-	}
 }

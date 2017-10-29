@@ -1,18 +1,25 @@
 package com.accenture.subcontractor.job.persistence;
 
+import java.util.List;
+
 import com.accenture.subcontractor.job.domain.Permission;
 
 public interface PermissionMapper {
-	public abstract int deleteByPrimaryKey(String permissionId);
+    int deleteByPrimaryKey(String permissionId);
 
-    public abstract int insert(Permission record);
+    int insert(Permission record);
 
-    public abstract int insertSelective(Permission record);
+    int insertSelective(Permission record);
 
-    public abstract Permission selectByPrimaryKey(String permissionId);
+    Permission selectByPrimaryKey(String permissionId);
 
-    public abstract int updateByPrimaryKeySelective(Permission record);
+    int updateByPrimaryKeySelective(Permission record);
 
-    public abstract int updateByPrimaryKey(Permission record);
+    int updateByPrimaryKey(Permission record);
     
+	void insertBatch(List<Permission> recordList);
+
+	void deleteBatch(List<Permission> recordList);
+
+	void updateBatch(List<Permission> recordList);
 }

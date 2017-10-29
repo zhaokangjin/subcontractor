@@ -5,21 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.WorkResume;
 
 public interface WorkResumeMapper {
-	public abstract int deleteByPrimaryKey(String resumeId);
+    int deleteByPrimaryKey(String resumeId);
 
-    public abstract int insert(WorkResume record);
+    int insert(WorkResume record);
 
-    public abstract int insertSelective(WorkResume record);
+    int insertSelective(WorkResume record);
 
-    public abstract WorkResume selectByPrimaryKey(String resumeId);
+    WorkResume selectByPrimaryKey(String resumeId);
 
-    public abstract int updateByPrimaryKeySelective(WorkResume record);
+    int updateByPrimaryKeySelective(WorkResume record);
 
-    public abstract int updateByPrimaryKey(WorkResume record);
+    int updateByPrimaryKey(WorkResume record);
     
-	public abstract int insertBatch(List<WorkResume> recordList);
+	void insertBatch(List<WorkResume> recordList);
 
-	public abstract int updateBatch(List<WorkResume> recordList);
+	void deleteBatch(List<WorkResume> recordList);
 
-	public abstract int deleteBatch(List<WorkResume> recordList);
+	void updateBatch(List<WorkResume> recordList);
 }

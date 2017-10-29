@@ -5,21 +5,21 @@ import java.util.List;
 import com.accenture.subcontractor.job.domain.AchievementDesc;
 
 public interface AchievementDescMapper {
-    public abstract int deleteByPrimaryKey(String achievementId);
+    int deleteByPrimaryKey(String achievementId);
 
-    public abstract int insert(AchievementDesc record);
+    int insert(AchievementDesc record);
 
-    public abstract int insertSelective(AchievementDesc record);
+    int insertSelective(AchievementDesc record);
 
-    public abstract AchievementDesc selectByPrimaryKey(String achievementId);
+    AchievementDesc selectByPrimaryKey(String achievementId);
 
-    public abstract int updateByPrimaryKeySelective(AchievementDesc record);
+    int updateByPrimaryKeySelective(AchievementDesc record);
 
-    public abstract int updateByPrimaryKey(AchievementDesc record);
+    int updateByPrimaryKey(AchievementDesc record);
     
-    public abstract int insertBatch(List<AchievementDesc> recordList);
-    
-    public abstract int updateBatch(List<AchievementDesc> recordList);
-    
-    public abstract int deleteBatch(List<AchievementDesc> recordList);
+	void insertBatch(List<AchievementDesc> recordList);
+
+	void deleteBatch(List<AchievementDesc> recordList);
+
+	void updateBatch(List<AchievementDesc> recordList);
 }

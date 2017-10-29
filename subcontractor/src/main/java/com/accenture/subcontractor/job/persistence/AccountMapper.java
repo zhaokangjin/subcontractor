@@ -2,23 +2,25 @@ package com.accenture.subcontractor.job.persistence;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.accenture.subcontractor.job.domain.Account;
 import com.accenture.subcontractor.job.domain.AccountKey;
 
 public interface AccountMapper {
-    public abstract int deleteByPrimaryKey(AccountKey key);
+    int deleteByPrimaryKey(AccountKey key);
 
-    public abstract int insert(Account record);
+    int insert(Account record);
 
-    public abstract int insertSelective(Account record);
+    int insertSelective(Account record);
 
-    public abstract Account selectByPrimaryKey(AccountKey key);
+    Account selectByPrimaryKey(AccountKey key);
+
+    int updateByPrimaryKeySelective(Account record);
+
+    int updateByPrimaryKey(Account record);
     
-    public abstract List<Account> selectAccountByUserId(@Param("userId") String userId);
-    
-    public abstract int updateByPrimaryKeySelective(Account record);
+	void insertBatch(List<Account> recordList);
 
-    public abstract int updateByPrimaryKey(Account record);
+	void deleteBatch(List<Account> recordList);
+
+	void updateBatch(List<Account> recordList);
 }

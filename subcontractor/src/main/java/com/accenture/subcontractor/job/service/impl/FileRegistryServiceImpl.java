@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import com.accenture.subcontractor.job.common.util.data.PageUtils;
 import com.accenture.subcontractor.job.domain.FileRegistry;
 import com.accenture.subcontractor.job.domain.condition.FileRegistryConditon;
 import com.accenture.subcontractor.job.persistence.FileInfoMapper;
@@ -67,36 +66,36 @@ public class FileRegistryServiceImpl implements FileRegistryService {
 			throw e;
 		}
 	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void deleteByPrimaryKeySoft(String id) {
-		try {
-			fileRegistryMapper.deleteByPrimaryKeySoft(id);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>deleteByPrimaryKey>>>error:"+e.getMessage());
-			throw e;
-		}	
-	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void deleteList(List<FileRegistry> record) {
-		try {
-			fileRegistryMapper.deleteList(record);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
-			throw e;
-		}
-	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void deleteListSoft(List<FileRegistry> record) {
-		try {
-			fileRegistryMapper.deleteListSoft(record);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
-			throw e;
-		}
-	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void deleteByPrimaryKeySoft(String id) {
+//		try {
+//			fileRegistryMapper.deleteByPrimaryKeySoft(id);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>deleteByPrimaryKey>>>error:"+e.getMessage());
+//			throw e;
+//		}	
+//	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void deleteList(List<FileRegistry> record) {
+//		try {
+//			fileRegistryMapper.deleteList(record);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
+//			throw e;
+//		}
+//	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void deleteListSoft(List<FileRegistry> record) {
+//		try {
+//			fileRegistryMapper.deleteListSoft(record);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>insertBatch>>>error:"+e);
+//			throw e;
+//		}
+//	}
 
 	@Override
 	@Transactional(rollbackFor=Exception.class)
@@ -120,19 +119,19 @@ public class FileRegistryServiceImpl implements FileRegistryService {
 		}
 		
 	}
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void updateList(List<FileRegistry> record) {
-		if(null==record || record.size()==0){
-			return;
-		}
-		try {
-			fileRegistryMapper.updateList(record);
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>updateBatch>>>error:"+e.getMessage());
-			throw e;
-		}
-	}
+//	@Override
+//	@Transactional(rollbackFor=Exception.class)
+//	public void updateList(List<FileRegistry> record) {
+//		if(null==record || record.size()==0){
+//			return;
+//		}
+//		try {
+//			fileRegistryMapper.updateList(record);
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>updateBatch>>>error:"+e.getMessage());
+//			throw e;
+//		}
+//	}
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public FileRegistry selectByPrimaryKey(String primaryKey) {
@@ -143,19 +142,44 @@ public class FileRegistryServiceImpl implements FileRegistryService {
 			throw e;
 		}
 	}
+//	@Override
+//	public PageInfo<FileRegistry> queryList(FileRegistryConditon  recordConditon) throws Exception {
+//		try {
+//			FileRegistry fileInfo=recordConditon.getFileRegistry();
+//			//设置分页
+//			PageUtils.setPageByCondition(recordConditon);
+//			List<FileRegistry> list= fileRegistryMapper.queryList(fileInfo);
+//			PageInfo<FileRegistry> pageData = new PageInfo<FileRegistry>(list);
+//			return pageData;
+//		} catch (Exception e) {
+//			logger.error("FileInfoServiceImpl>>>queryList>>>error:"+e.getMessage());
+//			throw e;
+//		}
+//	}
 	@Override
-	public PageInfo<FileRegistry> queryList(FileRegistryConditon  recordConditon) throws Exception {
-		try {
-			FileRegistry fileInfo=recordConditon.getFileRegistry();
-			//设置分页
-			PageUtils.setPageByCondition(recordConditon);
-			List<FileRegistry> list= fileRegistryMapper.queryList(fileInfo);
-			PageInfo<FileRegistry> pageData = new PageInfo<FileRegistry>(list);
-			return pageData;
-		} catch (Exception e) {
-			logger.error("FileInfoServiceImpl>>>queryList>>>error:"+e.getMessage());
-			throw e;
-		}
+	public void deleteByPrimaryKeySoft(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteList(List<FileRegistry> record) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteListSoft(List<FileRegistry> record) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateList(List<FileRegistry> record) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public PageInfo<FileRegistry> queryList(FileRegistryConditon FileRegistryConditon) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -55,7 +55,7 @@ public class AccountController {
 					account.setDeleteFlag("N");
 					account.setCreateTime(new Date());
 					account.setAccountNumberName(MapUtils.getString(accountInfo, "nickname", ""));
-					accountService.insert(account);
+					accountService.register(account);
 				}
 			} catch (Exception e) {
 				logger.error("AccountController>registerAccount>Exception:"+e);

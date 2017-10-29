@@ -2,8 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 	<!-- 数据库驱动包位置 -->
-	<classPathEntry
-		location="H:\maven\mavenRepository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
+	<classPathEntry location="H:\maven\mavenRepository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
 	<context id="context1">
 		<property name="javaFileEncoding" value="UTF-8" />
 		<commentGenerator>
@@ -11,172 +10,107 @@
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 		<!-- 数据库链接URL、用户名、密码 -->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3306/subcontractor" userId="root"
-			password="23990308" />
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/subcontractor" userId="root" password="23990308" />
 
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="com.accenture.subcontractor.job.domain"
-			targetProject="subcontractor/src/main/java" />
+		<javaModelGenerator targetPackage="com.accenture.subcontractor.job.domain" targetProject="subcontractor/src/main/java" />
 		<!-- 生成的映射文件报名和位置 -->
- 		<sqlMapGenerator targetPackage="persistence_mapper"
-			targetProject="subcontractor/src/main/resources" />
+		<sqlMapGenerator targetPackage="persistence_mapper" targetProject="subcontractor/src/main/resources" />
 		<!-- 生成DAO的包名和位置 -->
- 		<javaClientGenerator targetPackage="com.accenture.subcontractor.job.persistence"
-			targetProject="subcontractor/src/main/java" type="XMLMAPPER" />
+		<javaClientGenerator targetPackage="com.accenture.subcontractor.job.persistence" targetProject="subcontractor/src/main/java" type="XMLMAPPER" />
 		<!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->
 
-	<!-- 	<table tableName="tft_file_info" domainObjectName="FileInfo"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tft_file_info" domainObjectName="FileInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tft_file_registry" domainObjectName="FileRegistry"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tft_file_registry" domainObjectName="FileRegistry" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tlt_dictionaries" domainObjectName="Dictionaries"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tlt_dictionaries" domainObjectName="Dictionaries" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tlt_dictionaries_item" domainObjectName="DictionariesItem"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tlt_dictionaries_item" domainObjectName="DictionariesItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tlt_international" domainObjectName="International"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tlt_international" domainObjectName="International" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tlt_international_item" domainObjectName="InternationalItem"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tlt_international_item" domainObjectName="InternationalItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table> -->
-		<table tableName="tpt_account" domainObjectName="Account"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		</table>
+		<table tableName="tpt_account" domainObjectName="Account" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="true">
 		</table>
-		<!-- <table tableName="tpt_address" domainObjectName="Address"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_address" domainObjectName="Address" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_address_city" domainObjectName="AddressCity"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_address_city" domainObjectName="AddressCity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_address_county" domainObjectName="AddressCounty"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_address_county" domainObjectName="AddressCounty" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_address_provice" domainObjectName="AddressProvice"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_address_provice" domainObjectName="AddressProvice" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_address_town" domainObjectName="AddressTown"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_address_town" domainObjectName="AddressTown" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_address_village" domainObjectName="AddressVillage"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_address_village" domainObjectName="AddressVillage" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_certificate" domainObjectName="Certificate"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_certificate" domainObjectName="Certificate" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_industry" domainObjectName="Industry"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_industry" domainObjectName="Industry" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_organization" domainObjectName="Organization"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_organization" domainObjectName="Organization" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_permission" domainObjectName="Permission"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_permission" domainObjectName="Permission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_permission_matrix" domainObjectName="PermissionMatrix"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_permission_matrix" domainObjectName="PermissionMatrix" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_role" domainObjectName="Role"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_skill" domainObjectName="Skill"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_skill" domainObjectName="Skill" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_skill_type" domainObjectName="SkillType"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_skill_type" domainObjectName="SkillType" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tpt_user" domainObjectName="User"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tpt_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
 
-		<table tableName="tsc_achievement_desc" domainObjectName="AchievementDesc"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tsc_achievement_desc" domainObjectName="AchievementDesc" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tsc_education_resume" domainObjectName="EducationResume"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tsc_education_resume" domainObjectName="EducationResume" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tsc_project_resume" domainObjectName="ProjectResume"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tsc_project_resume" domainObjectName="ProjectResume" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tsc_projects_achievement" domainObjectName="ProjectsAchievement"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tsc_projects_achievement" domainObjectName="ProjectsAchievement" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="tsc_projects_desc" domainObjectName="ProjectsDesc" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tsc_projects_desc" domainObjectName="ProjectsDesc"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tsc_projects_duty" domainObjectName="ProjectsDuty" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tsc_projects_duty" domainObjectName="ProjectsDuty"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tsc_work_content" domainObjectName="WorkContent" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tsc_work_content" domainObjectName="WorkContent"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="tsc_work_resume" domainObjectName="WorkResume" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="tsc_work_resume" domainObjectName="WorkResume"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false">
-		</table> -->
 
 	</context>
 </generatorConfiguration>

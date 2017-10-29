@@ -22,19 +22,29 @@ public class ProjectResume {
 
     // 用户ID >>>表字段 : USER_ID
     private String userId;
-    
-    // 项目业绩表
-    private List<ProjectsAchievement> projectsAchievementList;
-    
-    // 项目描述表
-    private List<ProjectsDesc> projectsDescList;
 
-    // 项目职责表
-    private List<ProjectsDuty> projectsDutyList;
-    
     // 创建时间 >>>表字段 : CREATE_TIME
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    // 删除标记 >>>表字段 : DELETE_FLAG
+    private String deleteFlag;
+
+    // 最后修改人 >>>表字段 : LAST_UPDATE_PERSON
+    private String lastUpdatePerson;
+
+    // 最后修改时间 >>>表字段 : LAST_UPDATE_TIME
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastUpdateTime;
+
+    // 创建人 >>>表字段 : CREATOR
+    private String creator;
+    
+    private List<ProjectsAchievement>  projectsAchievementlist;
+    
+    private List<ProjectsDesc>  projectsDesclist;
+    
+    private List<ProjectsDuty>  projectsDutylist;
 
     public String getProjectResumeId() {
         return projectResumeId;
@@ -84,27 +94,59 @@ public class ProjectResume {
         this.createTime = createTime;
     }
 
-	public List<ProjectsAchievement> getProjectsAchievementList() {
-		return projectsAchievementList;
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public String getLastUpdatePerson() {
+        return lastUpdatePerson;
+    }
+
+    public void setLastUpdatePerson(String lastUpdatePerson) {
+        this.lastUpdatePerson = lastUpdatePerson;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+	public List<ProjectsAchievement> getProjectsAchievementlist() {
+		return projectsAchievementlist;
 	}
 
-	public void setProjectsAchievementList(List<ProjectsAchievement> projectsAchievementList) {
-		this.projectsAchievementList = projectsAchievementList;
+	public void setProjectsAchievementlist(List<ProjectsAchievement> projectsAchievementlist) {
+		this.projectsAchievementlist = projectsAchievementlist;
 	}
 
-	public List<ProjectsDesc> getProjectsDescList() {
-		return projectsDescList;
+	public List<ProjectsDesc> getProjectsDesclist() {
+		return projectsDesclist;
 	}
 
-	public void setProjectsDescList(List<ProjectsDesc> projectsDescList) {
-		this.projectsDescList = projectsDescList;
+	public void setProjectsDesclist(List<ProjectsDesc> projectsDesclist) {
+		this.projectsDesclist = projectsDesclist;
 	}
 
-	public List<ProjectsDuty> getProjectsDutyList() {
-		return projectsDutyList;
+	public List<ProjectsDuty> getProjectsDutylist() {
+		return projectsDutylist;
 	}
 
-	public void setProjectsDutyList(List<ProjectsDuty> projectsDutyList) {
-		this.projectsDutyList = projectsDutyList;
+	public void setProjectsDutylist(List<ProjectsDuty> projectsDutylist) {
+		this.projectsDutylist = projectsDutylist;
 	}
 }

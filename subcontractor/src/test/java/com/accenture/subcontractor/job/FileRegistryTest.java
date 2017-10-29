@@ -30,88 +30,88 @@ public class FileRegistryTest {
 	@Resource
 	FileInfoController fileInfoController;
 	
-	@Test
-	public void insertOne(){
-		FileRegistry fileRegistry=new FileRegistry();
-		fileRegistry.setCreateTime(new Date());
-		fileRegistry.setCreator("kangjin.zhao@accenture");
-		fileRegistry.setDeleteFlag("N");
-		String md5=UUID.randomUUID().toString().substring(0, 32);
-		fileRegistry.setFilemd5(md5);
-		fileRegistry.setFileSize("5M");
-		fileRegistry.setFilePath("image/office");
-		FileInfo fileInfo=null;
-		List<FileInfo> list=new ArrayList<FileInfo>();
-		for(int i=0;i<5;i++){
-			fileInfo=new FileInfo();
-			fileInfo.setActualFileName("测试注册文件服务"+i);
-			fileInfo.setCreateTime(new Date());
-			fileInfo.setCreator("kangjin.zhao@accenture");
-			fileInfo.setDeleteFlag("N");
-			fileInfo.setFilemd5(md5);
-			fileInfo.setUserId("kangjin.zhao"+i);
-			list.add(fileInfo);
-		}
-		fileRegistry.setFileInfoList(list);
-		fileRegistryController.insert(fileRegistry);
-		fileInfoController.insertBatch(list);
-	}
-	@Test
-	public void insertBatch(){
-		List<FileRegistry> listFileRegistry=new ArrayList<FileRegistry>();
-		FileRegistry fileRegistry=null;
-		FileInfo fileInfo=null;
-		List<FileInfo> list=new ArrayList<FileInfo>();;
-		for(int i=0;i<130;i++){
-			fileRegistry=new FileRegistry();
-			//INSERT INTO `subcontractor`.`tft_file_registry` 
-			//(`FILEMD5`, `DELETE_FLAG`, `FILE_SIZE`, `CREATOR`, `CREATE_TIME`, `EXT_NAME`, `FILE_PATH`) VALUES ('1', '1', '1', '1', '2017-10-10 09:42:43', '1', '1');
-			fileRegistry.setCreateTime(new Date(2017,8,i%30));
-			fileRegistry.setCreator("kangjin.zhao@accenture");
-			fileRegistry.setDeleteFlag("N");
-			String md5=UUID.randomUUID().toString().substring(0, 32);
-			fileRegistry.setFilemd5(md5);
-			fileRegistry.setFileSize("5M");
-			fileRegistry.setFilePath("image/office");
-			listFileRegistry.add(fileRegistry);
-			list=new ArrayList<FileInfo>();
-			for(int j=0;j<i+1;j++){
-				fileInfo=new FileInfo();
-				//INSERT INTO `subcontractor`.`tft_file_info` (
-				//` `, `,, `USER_ID`) VALUES ('1', '1', '1', '2017-10-10 09:41:50', '1', '1');
-				fileInfo.setActualFileName("测试注册文件服务"+i*j);
-				fileInfo.setCreateTime(new Date());
-				fileInfo.setCreator("kangjin.zhao@accenture");
-				fileInfo.setFilemd5(md5);
-				fileInfo.setFileId("原文件名是这样的吗"+i*j);
-				fileInfo.setUserId("kangjin.zhao@accenture");
-				fileInfo.setDeleteFlag("N");
-				list.add(fileInfo);
-			}
-			fileInfoController.insertBatch(list);
-		}
-		fileRegistryController.insertBatch(listFileRegistry);
-		
-	}
-	@Test
-	public void selectOne(){
-		String fileMd5="7febf904-71f3-41b1-82c8-b8fc049c";
-		FileRegistry fileRegistry=new FileRegistry();
-		fileRegistry.setFilemd5(fileMd5);
-		fileRegistry=fileRegistryController.selectByPrimaryKey(fileRegistry);
-		FileInfoConditon fileInfoConditon=new FileInfoConditon();
-		FileInfo fileInfo=new FileInfo();
-		fileInfo.setFilemd5(fileRegistry.getFilemd5());
-		fileInfoConditon.setFileInfo(fileInfo);
-		try {
-			PageInfo<FileInfo> fileInfoList=fileInfoController.queryList(fileInfoConditon);
-			fileRegistry.setFileInfoList(fileInfoList.getList());
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.err.println(JSON.toJSONString(fileRegistry));
-		
-	}
+//	@Test
+//	public void insertOne(){
+//		FileRegistry fileRegistry=new FileRegistry();
+//		fileRegistry.setCreateTime(new Date());
+//		fileRegistry.setCreator("kangjin.zhao@accenture");
+//		fileRegistry.setDeleteFlag("N");
+//		String md5=UUID.randomUUID().toString().substring(0, 32);
+//		fileRegistry.setFilemd5(md5);
+//		fileRegistry.setFileSize("5M");
+//		fileRegistry.setFilePath("image/office");
+//		FileInfo fileInfo=null;
+//		List<FileInfo> list=new ArrayList<FileInfo>();
+//		for(int i=0;i<5;i++){
+//			fileInfo=new FileInfo();
+//			fileInfo.setActualFileName("测试注册文件服务"+i);
+//			fileInfo.setCreateTime(new Date());
+//			fileInfo.setCreator("kangjin.zhao@accenture");
+//			fileInfo.setDeleteFlag("N");
+//			fileInfo.setFilemd5(md5);
+//			fileInfo.setUserId("kangjin.zhao"+i);
+//			list.add(fileInfo);
+//		}
+//		fileRegistry.setFileInfoList(list);
+//		fileRegistryController.insert(fileRegistry);
+//		fileInfoController.insertBatch(list);
+//	}
+//	@Test
+//	public void insertBatch(){
+//		List<FileRegistry> listFileRegistry=new ArrayList<FileRegistry>();
+//		FileRegistry fileRegistry=null;
+//		FileInfo fileInfo=null;
+//		List<FileInfo> list=new ArrayList<FileInfo>();;
+//		for(int i=0;i<130;i++){
+//			fileRegistry=new FileRegistry();
+//			//INSERT INTO `subcontractor`.`tft_file_registry` 
+//			//(`FILEMD5`, `DELETE_FLAG`, `FILE_SIZE`, `CREATOR`, `CREATE_TIME`, `EXT_NAME`, `FILE_PATH`) VALUES ('1', '1', '1', '1', '2017-10-10 09:42:43', '1', '1');
+//			fileRegistry.setCreateTime(new Date(2017,8,i%30));
+//			fileRegistry.setCreator("kangjin.zhao@accenture");
+//			fileRegistry.setDeleteFlag("N");
+//			String md5=UUID.randomUUID().toString().substring(0, 32);
+//			fileRegistry.setFilemd5(md5);
+//			fileRegistry.setFileSize("5M");
+//			fileRegistry.setFilePath("image/office");
+//			listFileRegistry.add(fileRegistry);
+//			list=new ArrayList<FileInfo>();
+//			for(int j=0;j<i+1;j++){
+//				fileInfo=new FileInfo();
+//				//INSERT INTO `subcontractor`.`tft_file_info` (
+//				//` `, `,, `USER_ID`) VALUES ('1', '1', '1', '2017-10-10 09:41:50', '1', '1');
+//				fileInfo.setActualFileName("测试注册文件服务"+i*j);
+//				fileInfo.setCreateTime(new Date());
+//				fileInfo.setCreator("kangjin.zhao@accenture");
+//				fileInfo.setFilemd5(md5);
+//				fileInfo.setFileId("原文件名是这样的吗"+i*j);
+//				fileInfo.setUserId("kangjin.zhao@accenture");
+//				fileInfo.setDeleteFlag("N");
+//				list.add(fileInfo);
+//			}
+//			fileInfoController.insertBatch(list);
+//		}
+//		fileRegistryController.insertBatch(listFileRegistry);
+//		
+//	}
+//	@Test
+//	public void selectOne(){
+//		String fileMd5="7febf904-71f3-41b1-82c8-b8fc049c";
+//		FileRegistry fileRegistry=new FileRegistry();
+//		fileRegistry.setFilemd5(fileMd5);
+//		fileRegistry=fileRegistryController.selectByPrimaryKey(fileRegistry);
+//		FileInfoConditon fileInfoConditon=new FileInfoConditon();
+//		FileInfo fileInfo=new FileInfo();
+//		fileInfo.setFilemd5(fileRegistry.getFilemd5());
+//		fileInfoConditon.setFileInfo(fileInfo);
+//		try {
+//			PageInfo<FileInfo> fileInfoList=fileInfoController.queryList(fileInfoConditon);
+//			fileRegistry.setFileInfoList(fileInfoList.getList());
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.err.println(JSON.toJSONString(fileRegistry));
+//		
+//	}
 }
