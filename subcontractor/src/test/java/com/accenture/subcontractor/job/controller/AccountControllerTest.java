@@ -33,8 +33,8 @@ public class AccountControllerTest {
 		 */
 		
 		accountInfo.put("subscribe", "1");
-		accountInfo.put("openid", "oLVPpjqs2BhvzwPj5A-vTYAX4GLc");
-		accountInfo.put("nickname", "刺猬宝宝");
+		accountInfo.put("openid", "oLVPpjqs2BhvzwPj5A-vTYAX4GPG");
+		accountInfo.put("nickname", "还没开始?");
 		accountInfo.put("sex", "M");
 		accountInfo.put("language", "CN");
 		accountInfo.put("headimgurl", "http://wx.qlogo.cn/mmopen/JcDicrZBlREhnNXZRudod9PmibRkIs5K2f1tUQ7lFjC63pYHaXGxNDgMzjGDEuvzYZbFOqtUXaxSdoZG6iane5ko9H30krIbzGv/0");

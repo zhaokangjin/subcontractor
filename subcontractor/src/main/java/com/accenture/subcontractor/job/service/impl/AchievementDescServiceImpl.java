@@ -31,4 +31,26 @@ public class AchievementDescServiceImpl implements AchievementDescService {
 			throw e;
 		}
 	}
+
+	@Override
+	public void deleteBatch(List<AchievementDesc> recordList) {
+		try {
+			achievementDescMapper.deleteBatch(recordList);
+		} catch (Exception e) {
+			logger.error("AchievementDescServiceImpl>insertBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
+
+	@Override
+	public void updateBatch(List<AchievementDesc> recordList) {
+		try {
+			achievementDescMapper.updateBatch(recordList);
+		} catch (Exception e) {
+			logger.error("AchievementDescServiceImpl>insertBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
 }

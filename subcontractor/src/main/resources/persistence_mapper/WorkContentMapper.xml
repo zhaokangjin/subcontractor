@@ -33,12 +33,15 @@
 		insert into tsc_work_content (CONTENT_ID, WORK_CONTENT, RESUME_ID,
 		START_DATE, END_DATE, CREATE_TIME,
 		DEPARTMENT_NAME, POST, DELETE_FLAG,
-		LAST_UPDATE_PERSON, LAST_UPDATE_TIME, CREATOR
+		LAST_UPDATE_PERSON,
+		LAST_UPDATE_TIME, CREATOR
 		)
 		values (#{contentId,jdbcType=CHAR}, #{workContent,jdbcType=VARCHAR}, #{resumeId,jdbcType=CHAR},
-		#{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP},
+		#{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE},
+		#{createTime,jdbcType=TIMESTAMP},
 		#{departmentName,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=CHAR},
-		#{lastUpdatePerson,jdbcType=CHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=CHAR}
+		#{lastUpdatePerson,jdbcType=CHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=CHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.accenture.subcontractor.job.domain.WorkContent">
@@ -163,7 +166,8 @@
 		update tsc_work_content
 		set WORK_CONTENT = #{workContent,jdbcType=VARCHAR},
 		RESUME_ID = #{resumeId,jdbcType=CHAR},
-		START_DATE = #{startDate,jdbcType=DATE},
+		START_DATE =
+		#{startDate,jdbcType=DATE},
 		END_DATE = #{endDate,jdbcType=DATE},
 		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
 		DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
@@ -172,24 +176,77 @@
 		LAST_UPDATE_PERSON = #{lastUpdatePerson,jdbcType=CHAR},
 		LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
 		CREATOR = #{creator,jdbcType=CHAR}
-		where CONTENT_ID = #{contentId,jdbcType=CHAR}
+		where
+		CONTENT_ID = #{contentId,jdbcType=CHAR}
 	</update>
 	<insert id="insertBatch" parameterType="java.util.List">
-		
+		insert into tsc_work_content (CONTENT_ID, WORK_CONTENT, RESUME_ID,
+		START_DATE, END_DATE, CREATE_TIME,
+		DEPARTMENT_NAME, POST, DELETE_FLAG,
+		LAST_UPDATE_PERSON, LAST_UPDATE_TIME, CREATOR
+		)
+		values
 		<foreach collection="list" item="item" separator=",">
-			
+			(#{item.contentId,jdbcType=CHAR},
+			#{item.workContent,jdbcType=VARCHAR},
+			#{item.resumeId,jdbcType=CHAR},
+			#{item.startDate,jdbcType=DATE},
+			#{item.endDate,jdbcType=DATE},
+			#{item.createTime,jdbcType=TIMESTAMP},
+			#{item.departmentName,jdbcType=VARCHAR},
+			#{item.post,jdbcType=VARCHAR},
+			#{item.deleteFlag,jdbcType=CHAR},
+			#{item.lastUpdatePerson,jdbcType=CHAR},
+			#{item.lastUpdateTime,jdbcType=TIMESTAMP},
+			#{item.creator,jdbcType=CHAR}
+			)
 		</foreach>
 	</insert>
 	<delete id="deleteBatch" parameterType="java.util.List">
-		
-		in
+		delete from tsc_work_content where CONTENT_ID in
 		<foreach collection="list" item="item" separator="," open="(" close=")">
-			
+			#{item.contentId,jdbcType=CHAR}
 		</foreach>
 	</delete>
 	<update id="updateBatch" parameterType="java.util.List">
 		<foreach collection="list" item="item" separator=";">
-			
+			update tsc_work_content
+			<set>
+				<if test="item.workContent != null">
+					WORK_CONTENT = #{item.workContent,jdbcType=VARCHAR},
+				</if>
+				<if test="item.resumeId != null">
+					RESUME_ID = #{item.resumeId,jdbcType=CHAR},
+				</if>
+				<if test="item.startDate != null">
+					START_DATE = #{item.startDate,jdbcType=DATE},
+				</if>
+				<if test="item.endDate != null">
+					END_DATE = #{item.endDate,jdbcType=DATE},
+				</if>
+				<if test="item.createTime != null">
+					CREATE_TIME = #{item.createTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.departmentName != null">
+					DEPARTMENT_NAME = #{item.departmentName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.post != null">
+					POST = #{item.post,jdbcType=VARCHAR},
+				</if>
+				<if test="item.deleteFlag != null">
+					DELETE_FLAG = #{item.deleteFlag,jdbcType=CHAR},
+				</if>
+				<if test="item.lastUpdatePerson != null">
+					LAST_UPDATE_PERSON = #{item.lastUpdatePerson,jdbcType=CHAR},
+				</if>
+				<if test="item.lastUpdateTime != null">
+					LAST_UPDATE_TIME = #{item.lastUpdateTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.creator != null">
+					CREATOR = #{item.creator,jdbcType=CHAR},
+				</if>
+			</set>
+			where CONTENT_ID = #{item.contentId,jdbcType=CHAR}
 		</foreach>
 	</update>
 </mapper>

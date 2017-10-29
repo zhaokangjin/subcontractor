@@ -6,6 +6,8 @@ import com.accenture.subcontractor.job.domain.Certificate;
 
 public interface CertificateService {
 
-	public abstract void insertBatch(List<Certificate> recordList);
+	public abstract void deleteBatch(List<Certificate> recordList) ;
+	public abstract void insertBatch(List<Certificate> recordList) ;
+	public abstract void updateBatch(List<Certificate> recordList) ;
 
 }

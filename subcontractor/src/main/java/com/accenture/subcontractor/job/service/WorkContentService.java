@@ -8,5 +8,4 @@ public interface WorkContentService {
 	public abstract void deleteBatch(List<WorkContent> recordList) ;
 	public abstract void insertBatch(List<WorkContent> recordList) ;
 	public abstract void updateBatch(List<WorkContent> recordList) ;
-
 }

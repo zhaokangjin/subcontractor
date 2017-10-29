@@ -6,6 +6,9 @@ import com.accenture.subcontractor.job.domain.AchievementDesc;
 
 public interface AchievementDescService {
 
-	public abstract void insertBatch(List<AchievementDesc> recordList);
+	public abstract void deleteBatch(List<AchievementDesc> recordList) ;
+	public abstract void insertBatch(List<AchievementDesc> recordList) ;
+	public abstract void updateBatch(List<AchievementDesc> recordList) ;
+
 
 }

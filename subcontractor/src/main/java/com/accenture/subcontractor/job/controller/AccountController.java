@@ -37,7 +37,7 @@ public class AccountController {
 	 * @param type
 	 * @param accountInfo
 	 * @param accountInfo
-	 *  微信参数 ：{"subscribe":"1","openid":"oLVPpjqs2BhvzwPj5A-vTYAX4GLc","sex":"1","nickname":"刺猬宝宝","headimgurl":"http://wx.qlogo.cn/mmopen/JcDicrZBlREhnNXZRudod9PmibRkIs5K2f1tUQ7lFjC63pYHaXGxNDgMzjGDEuvzYZbFOqtUXaxSdoZG6iane5ko9H30krIbzGv/0","language":"CN","subscribe_time":"1386160805"}
+	 *  微信参数 ：{"subscribe":"1","openid":"oLVPpjqs2BhvzwPj5A-vTYAX4GPG","sex":"M","nickname":"还没开始?","headimgurl":"http://wx.qlogo.cn/mmopen/JcDicrZBlREhnNXZRudod9PmibRkIs5K2f1tUQ7lFjC63pYHaXGxNDgMzjGDEuvzYZbFOqtUXaxSdoZG6iane5ko9H30krIbzGv/0","language":"CN","subscribe_time":"1326160805"}
 	 */
 	@RequestMapping("/register")
 	public void registerAccount(@RequestParam String type, @RequestParam Map<String, String> accountInfo) {

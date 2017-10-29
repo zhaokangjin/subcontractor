@@ -42,11 +42,9 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void register(Account record) {
 		try {
-
-			
 			Account account=accountMapper.selectByPrimaryKey(record);
 			if(null!=account){
-				accountMapper.updateByPrimaryKey(record);
+				accountMapper.updateByPrimaryKeySelective(record);
 			}else{
 				User user = new User();
 				String userId = UUID.randomUUID().toString();

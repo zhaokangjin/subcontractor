@@ -17,7 +17,7 @@ import com.accenture.subcontractor.job.service.CertificateService;
 @Service
 @Transactional
 public class CertificateServiceImpl implements CertificateService {
-	private final Logger logger=LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Resource
 	CertificateMapper certificateMapper;
 
@@ -25,11 +25,31 @@ public class CertificateServiceImpl implements CertificateService {
 	@Transactional(rollbackFor = Exception.class)
 	public void insertBatch(List<Certificate> recordList) {
 		try {
-			if(recordList.size()>0){
-				certificateMapper.insertBatch(recordList);
-			}
+			certificateMapper.insertBatch(recordList);
 		} catch (Exception e) {
-			logger.error("CertificateServiceImpl>insertBatch>Exception:"+e);
+			logger.error("CertificateServiceImpl>insertBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
+
+	@Override
+	public void deleteBatch(List<Certificate> recordList) {
+		try {
+			certificateMapper.deleteBatch(recordList);
+		} catch (Exception e) {
+			logger.error("CertificateServiceImpl>deleteBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
+
+	@Override
+	public void updateBatch(List<Certificate> recordList) {
+		try {
+			certificateMapper.updateBatch(recordList);
+		} catch (Exception e) {
+			logger.error("CertificateServiceImpl>updateBatch>Exception:" + e);
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			throw e;
 		}

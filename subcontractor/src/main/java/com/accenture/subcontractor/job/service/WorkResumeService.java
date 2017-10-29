@@ -6,6 +6,6 @@ import com.accenture.subcontractor.job.domain.WorkResume;
 
 public interface WorkResumeService {
 
-	public abstract void insertBatch(List<WorkResume> workResumeList);
+	public abstract void editBatch(List<WorkResume> recordList);
 
 }
