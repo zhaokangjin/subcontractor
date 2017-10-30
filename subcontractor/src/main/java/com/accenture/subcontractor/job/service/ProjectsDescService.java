@@ -6,6 +6,9 @@ import com.accenture.subcontractor.job.domain.ProjectsDesc;
 
 public interface ProjectsDescService {
 
-	public abstract void insertBatch(List<ProjectsDesc> projectsDescList);
+	public abstract void deleteBatch(List<ProjectsDesc> recordList);
 
+	public abstract void insertBatch(List<ProjectsDesc> recordList);
+
+	public abstract void updateBatch(List<ProjectsDesc> recordList);
 }

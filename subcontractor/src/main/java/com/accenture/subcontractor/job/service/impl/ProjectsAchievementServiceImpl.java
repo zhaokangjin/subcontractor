@@ -33,4 +33,28 @@ public class ProjectsAchievementServiceImpl implements ProjectsAchievementServic
 		}
 	}
 
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteBatch(List<ProjectsAchievement> recordList) {
+		try {
+			projectsAchievementMapper.deleteBatch(recordList);
+		} catch (Exception e) {
+			logger.error("ProjectsAchievementServiceImpl>deleteBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void updateBatch(List<ProjectsAchievement> recordList) {
+		try {
+			projectsAchievementMapper.updateBatch(recordList);
+		} catch (Exception e) {
+			e.printStackTrace();logger.error("ProjectsAchievementServiceImpl>updateBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
+
 }

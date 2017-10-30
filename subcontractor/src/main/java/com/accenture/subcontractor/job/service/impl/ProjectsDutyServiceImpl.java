@@ -32,4 +32,28 @@ public class ProjectsDutyServiceImpl implements ProjectsDutyService {
 			throw e;
 		}
 	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteBatch(List<ProjectsDuty> recordList) {
+		try {
+			projectsDutyMapper.deleteBatch(recordList);
+		} catch (Exception e) {
+			logger.error("ProjectsDutyServiceImpl>deleteBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void updateBatch(List<ProjectsDuty> recordList) {
+		try {
+			projectsDutyMapper.updateBatch(recordList);
+		} catch (Exception e) {
+			logger.error("ProjectsDutyServiceImpl>updateBatch>Exception:" + e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			throw e;
+		}
+	}
 }

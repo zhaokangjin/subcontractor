@@ -32,4 +32,16 @@ public class ProjectsDescServiceImpl implements ProjectsDescService {
 			throw e;
 		}
 	}
+
+	@Override
+	public void deleteBatch(List<ProjectsDesc> recordList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateBatch(List<ProjectsDesc> recordList) {
+		// TODO Auto-generated method stub
+		
+	}
 }

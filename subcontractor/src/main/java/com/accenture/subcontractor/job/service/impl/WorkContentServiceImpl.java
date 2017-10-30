@@ -21,6 +21,7 @@ public class WorkContentServiceImpl implements WorkContentService {
 	@Resource
 	WorkContentMapper workContentMapper;
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void deleteBatch(List<WorkContent> recordList) {
 		try {
 			workContentMapper.deleteBatch(recordList);
@@ -42,6 +43,7 @@ public class WorkContentServiceImpl implements WorkContentService {
 		}
 	}
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void updateBatch(List<WorkContent> recordList) {
 		try {
 			workContentMapper.updateBatch(recordList);
