@@ -20,3 +20,6 @@ mybatis:
   type-aliases-package: com.accenture.subcontractor.job.domain
   mapper-locations: classpath*:persistence_mapper/*Mapper.xml
   config-location: classpath:mybatis-config.xml
+logging:
+  file: logs/subcontracor.log
+  level: INFO

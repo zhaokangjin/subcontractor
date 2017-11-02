@@ -45,7 +45,8 @@ public class AccountControllerTest {
 		WeixinParam weixinParam=new WeixinParam();
 		weixinParam.setType("weixin");
 		weixinParam.setParam(accountInfo);
-		accountController.registerAccount(weixinParam);
+		
+//		accountController.registerAccount(weixinParam);
 	}
 
 }

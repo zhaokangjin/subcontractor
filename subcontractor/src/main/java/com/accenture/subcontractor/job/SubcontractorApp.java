@@ -24,4 +24,5 @@ public class SubcontractorApp {
 		logger.info("SubcontractorApp starting...");
 		SpringApplication.run(SubcontractorApp.class, args);
 	}
+	
 }
