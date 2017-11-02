@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.accenture.subcontractor.job.SubcontractorApp;
+import com.accenture.subcontractor.job.domain.WeixinParam;
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
 @SpringApplicationConfiguration(classes = SubcontractorApp.class) // 指定我们SpringBoot工程的Application启动类
@@ -30,16 +31,21 @@ public class AccountControllerTest {
 	 *            "country": "中国", "headimgurl":
 	 *            "http://wx.qlogo.cn/mmopen/JcDicrZBlREhnNXZRudod9PmibRkIs5K2f1tUQ7lFjC63pYHaXGxNDgMzjGDEuvzYZbFOqtUXaxSdoZG6iane5ko9H30krIbzGv/0",
 	 *            "subscribe_time": 1386160805 }
+	 *            	@RequestMapping(value="/register",method=RequestMethod.POST)
+	public int registerAccount(@RequestBody WeixinParam weixinParam) {
 		 */
 		
 		accountInfo.put("subscribe", "1");
-		accountInfo.put("openid", "oLVPpjqs2BhvzwPj5A-vTYAX4GPG");
-		accountInfo.put("nickname", "还没开始?");
+		accountInfo.put("openid", "opVqpjqs2BhvzwPj5A-vTYAX4GPe");
+		accountInfo.put("nickname", "kaishibb");
 		accountInfo.put("sex", "M");
 		accountInfo.put("language", "CN");
 		accountInfo.put("headimgurl", "http://wx.qlogo.cn/mmopen/JcDicrZBlREhnNXZRudod9PmibRkIs5K2f1tUQ7lFjC63pYHaXGxNDgMzjGDEuvzYZbFOqtUXaxSdoZG6iane5ko9H30krIbzGv/0");
 		accountInfo.put("subscribe_time", "1326160805");
-		accountController.registerAccount("weixin", accountInfo);
+		WeixinParam weixinParam=new WeixinParam();
+		weixinParam.setType("weixin");
+		weixinParam.setParam(accountInfo);
+		accountController.registerAccount(weixinParam);
 	}
 
 }
