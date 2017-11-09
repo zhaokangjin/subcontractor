@@ -12,6 +12,8 @@ public interface SkillTypeMapper {
     int insertSelective(SkillType record);
 
     SkillType selectByPrimaryKey(String skillId);
+    
+    List<SkillType> queryList(SkillType skillType);
 
     int updateByPrimaryKeySelective(SkillType record);
 

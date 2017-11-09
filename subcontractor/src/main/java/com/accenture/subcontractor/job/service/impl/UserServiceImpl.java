@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.accenture.subcontractor.job.domain.User;
 import com.accenture.subcontractor.job.persistence.EducationResumeMapper;
 import com.accenture.subcontractor.job.persistence.UserMapper;
 import com.accenture.subcontractor.job.service.AccountService;
+import com.accenture.subcontractor.job.service.SkillService;
 import com.accenture.subcontractor.job.service.UserService;
 
 @Service
@@ -23,6 +25,11 @@ public class UserServiceImpl implements UserService {
 	EducationResumeMapper educationResumeMapper;
 	@Resource
 	AccountService accountService;
+	@Resource
+	SkillService skillService;
+	
+	
+	
 //	@Override
 //	public User getUserAndChildren(User user) {
 //		String userId=user.getUserId();
@@ -81,15 +88,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int insert(User record) {
-		
-		return userMapper.insert(record);
+		try {
+			if(null!=record.getSkillList() && record.getSkillList().size()>0){
+				skillService.insertBatch(record.getSkillList());
+			}
+			userMapper.insert(record);
+			return 1;
+		} catch (Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			logger.error("UserServiceImpl>insert>Exception"+e);
+			throw e;
+		}
 	}
 
-//	@Override
-//	public String insertUserChildren(User record) {
-//		return userMapper.insertUserChildren(record);
-//	}
+
 
 	@Override
 	public int insertSelective(User record) {

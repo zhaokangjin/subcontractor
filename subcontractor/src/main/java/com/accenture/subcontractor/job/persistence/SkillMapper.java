@@ -2,6 +2,8 @@ package com.accenture.subcontractor.job.persistence;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.accenture.subcontractor.job.domain.Skill;
 
 public interface SkillMapper {
@@ -11,7 +13,7 @@ public interface SkillMapper {
 
     int insertSelective(Skill record);
 
-    Skill selectByPrimaryKey(String professionSkillId);
+    Skill selectByPrimaryKey(@Param("id")String professionSkillId);
 
     int updateByPrimaryKeySelective(Skill record);
 

@@ -29,6 +29,9 @@ public class Account extends AccountKey {
 
     // 最后修改人 >>>表字段 : LAST_UPDATE_PERSON
     private String lastUpdatePerson;
+    
+    //绑定用户信息便于返回
+    private User user;
 
     // 最后修改时间 >>>表字段 : LAST_UPDATE_TIME
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
@@ -105,4 +108,12 @@ public class Account extends AccountKey {
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

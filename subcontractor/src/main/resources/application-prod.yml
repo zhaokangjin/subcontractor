@@ -1,5 +1,5 @@
 server:
-  port: ${APP_PORT:26500}
+  port: ${APP_PORT:80}
   compression:
     enabled: true
   tomcat:

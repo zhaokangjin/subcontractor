@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accenture.subcontractor.job.domain.Account;
 import com.accenture.subcontractor.job.domain.User;
 import com.accenture.subcontractor.job.service.AccountService;
+import com.accenture.subcontractor.job.service.SkillService;
 import com.accenture.subcontractor.job.service.UserService;
 import com.alibaba.fastjson.JSON;
 
@@ -22,6 +23,9 @@ public class UserController {
 	UserService userService;
 	@Resource
 	AccountService accountService;
+	@Resource
+	SkillService skillService;
+	
 	@RequestMapping(value="/getUserAndChild",method=RequestMethod.GET)
 	public User getUserAndChild(Account account){
 		if(null!=account){
@@ -40,7 +44,6 @@ public class UserController {
 		if(null!=user){
 			logger.info("UserController>getUserAndChild>account:"+JSON.toJSONString(user));
 			userService.saveOrUpdateUser(user);
-			
 		}else{
 			throw new NullPointerException("新增用户信息数据空指针异常");
 		}
