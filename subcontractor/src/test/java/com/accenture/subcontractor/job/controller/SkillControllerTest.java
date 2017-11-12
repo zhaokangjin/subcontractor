@@ -2,7 +2,6 @@ package com.accenture.subcontractor.job.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -22,12 +21,6 @@ public class SkillControllerTest {
 	@Resource
 	SkillController skillController;
 
-	@Test
-	public void test() {
-		Skill skill=new Skill();
-		skill.setUserId("");
-		skillController.getSkillsByUserId(skill);
-	}
 	@Test
 	public void testInsertOrUpdate() {
 		List<Skill> recordList=new ArrayList<Skill>();

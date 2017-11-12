@@ -112,11 +112,11 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 	@Override
 	public PageInfo<SkillType>  querySkillRootList(SkillTypeConditon skillTypeConditon){
 		try {
-			SkillType skillType=skillTypeConditon.getSkillTyp();
+			SkillType skillType=skillTypeConditon.getSkillType();
 			PageUtils.setPageByCondition(skillTypeConditon);
 			List<SkillType> list= skillTypeMapper.querySkillRootList(skillType);
 			PageInfo<SkillType> pageData = new PageInfo<SkillType>(list);
-			logger.error("SkillTypeServiceImpl>pageData>list:"+JSON.toJSONString(list));
+			logger.info("SkillTypeServiceImpl>pageData>list:"+JSON.toJSONString(list));
 			return pageData;
 		} catch (Exception e) {
 			logger.error("SkillTypeServiceImpl>queryList>Exception:"+e);

@@ -3,6 +3,8 @@ package com.accenture.subcontractor.job.service;
 import java.util.List;
 
 import com.accenture.subcontractor.job.domain.Skill;
+import com.accenture.subcontractor.job.domain.condition.SkillCondition;
+import com.github.pagehelper.PageInfo;
 
 public interface SkillService {
 
@@ -12,7 +14,7 @@ public interface SkillService {
 
 	void insert(Skill record);
 	
-	List<Skill> selectByUserId(String userId);
+	PageInfo<Skill> selectByUserId(SkillCondition skillCondition);
 
 	void insertBatch(List<Skill> recordList);
 

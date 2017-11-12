@@ -51,7 +51,7 @@ public class SkillTypeControllerTest {
 		skillTypeConditon.setPage(page);
 		SkillType skillType=new SkillType();
 		skillType.setLevel("1");
-		skillTypeConditon.setSkillTyp(skillType);
+		skillTypeConditon.setSkillType(skillType);
 		Object obj=skillTypeController.querySkillRootList(skillTypeConditon);
 		logger.info("SkillTypeControllerTest>getRoot:"+JSON.toJSONString(obj));
 	}

@@ -7,13 +7,14 @@
 		<result column="COLOR" jdbcType="CHAR" property="color" />
 		<result column="PARENT_SKILL_ID" jdbcType="CHAR" property="parentSkillId" />
 		<result column="LEVEL" jdbcType="CHAR" property="level" />
+		<result column="SORT" jdbcType="INTEGER" property="sort" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		SKILL_ID, SKILL_NAME, COLOR ,PARENT_SKILL_ID,LEVEL
+		SKILL_ID, SKILL_NAME, COLOR ,PARENT_SKILL_ID,LEVEL,SORT
 	</sql>
 	<select id="queryListByIds" parameterType="java.util.List" resultMap="BaseResultMap">
 		SELECT
-		<include refid="Base_Column_List"></include>
+		<include refid="Base_Column_List" />
 		FROM tpt_skill_type T
 		WHERE T.SKILL_ID in
 		<foreach collection="list" item="item" open="(" close=")" separator=",">
@@ -22,13 +23,13 @@
 	</select>
 	<select id="listChildSkill" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
-		<include refid="Base_Column_List"></include>
+		<include refid="Base_Column_List" />
 		from tpt_skill_type T
 		where 1=1
 		<if test="skillId!=null and skillId!=''">
 			and EXISTS(
 			SELECT 1 from tpt_skill_type W
-			where w.SKILL_ID = #{skillId,jdbcType,VARCHAR}
+			where w.SKILL_ID = #{skillId,jdbcType=CHAR}
 			AND W.SKILL_ID = T.PARENT_SKILL_ID
 			)
 		</if>

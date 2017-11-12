@@ -13,9 +13,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import com.accenture.subcontractor.job.common.util.data.PageUtils;
 import com.accenture.subcontractor.job.domain.Skill;
+import com.accenture.subcontractor.job.domain.condition.SkillCondition;
 import com.accenture.subcontractor.job.persistence.SkillMapper;
 import com.accenture.subcontractor.job.service.SkillService;
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageInfo;
 
 @Service
 @Transactional
@@ -96,9 +100,13 @@ public class SkillServiceImpl implements SkillService {
 		return null;
 	}
 	@Override
-	public List<Skill> selectByUserId(String userId){
+	public PageInfo<Skill> selectByUserId(SkillCondition skillCondition){
 		try {
-			return skillMapper.selectByUserId(userId);
+			PageUtils.setPageByCondition(skillCondition);
+			List<Skill> list= skillMapper.selectByUserId(skillCondition.getSkill().getUserId());
+			PageInfo<Skill> pageData = new PageInfo<Skill>(list);
+			logger.error("SkillTypeServiceImpl>pageData>list:"+JSON.toJSONString(list));
+			return pageData;
 		} catch (Exception e) {
 			logger.error("SkillServiceImpl>selectByUserId>Exception:"+e);
 			throw e;

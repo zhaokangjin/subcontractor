@@ -10,6 +10,7 @@
 		<result column="LAST_UPDATE_PERSON" jdbcType="CHAR" property="lastUpdatePerson" />
 		<result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP" property="lastUpdateTime" />
 		<result column="CREATOR" jdbcType="CHAR" property="creator" />
+		<result column="SKILL_NAME" jdbcType="CHAR" property="skillName" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		PROFESSION_SKILL_ID, SKILL_ID, USER_ID, CREATE_TIME, DELETE_FLAG,
@@ -23,11 +24,12 @@
 	</select>
 	<select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select
-		<include refid="Base_Column_List" />
+		PROFESSION_SKILL_ID, SKILL_ID, USER_ID, CREATE_TIME, DELETE_FLAG,
+		LAST_UPDATE_PERSON, LAST_UPDATE_TIME, CREATOR,(SELECT A.SKILL_NAME FROM tpt_skill_type A WHERE A.SKILL_ID=T.SKILL_ID ) AS SKILL_NAME
 		from tpt_skill t
 		where 1=1
 		<if test="userId!=null and userId!=''">
-			t.USER_ID=#{userId,jdbcType=CHAR}
+			and t.USER_ID=#{userId,jdbcType=CHAR}
 		</if>
 	</select>
 

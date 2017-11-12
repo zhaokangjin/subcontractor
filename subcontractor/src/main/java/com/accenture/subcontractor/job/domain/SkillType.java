@@ -15,6 +15,9 @@ public class SkillType {
 
 	// 层级>>>表字段 : LEVEL
 	private String level;
+	
+	// 排序>>>表字段 : SORT
+	private int sort;
 
 	public String getSkillId() {
 		return skillId;
@@ -54,5 +57,13 @@ public class SkillType {
 
 	public void setLevel(String level) {
 		this.level = level;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 }

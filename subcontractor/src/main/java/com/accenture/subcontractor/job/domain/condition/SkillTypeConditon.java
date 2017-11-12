@@ -6,16 +6,11 @@ import com.accenture.subcontractor.job.domain.SkillType;
 public class SkillTypeConditon extends BaseCondition{
 	private static final long serialVersionUID = 1L;
 	// 查询过滤条件
-	private SkillType skillTyp;
-	public SkillType getSkillTyp() {
-		return skillTyp;
+	private SkillType skillType;
+	public SkillType getSkillType() {
+		return skillType;
 	}
-	public void setSkillTyp(SkillType skillTyp) {
-		this.skillTyp = skillTyp;
+	public void setSkillType(SkillType skillType) {
+		this.skillType = skillType;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
 }

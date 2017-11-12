@@ -31,6 +31,9 @@ public class Skill {
     // 创建人 >>>表字段 : CREATOR
     private String creator;
 
+    //把skillName拿出来
+    private String skillName;
+    
     public String getProfessionSkillId() {
         return professionSkillId;
     }
@@ -94,4 +97,12 @@ public class Skill {
     public void setCreator(String creator) {
         this.creator = creator;
     }
+
+	public String getSkillName() {
+		return skillName;
+	}
+
+	public void setSkillName(String skillName) {
+		this.skillName = skillName;
+	}
 }
