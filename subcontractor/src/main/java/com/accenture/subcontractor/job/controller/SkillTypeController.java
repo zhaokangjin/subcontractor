@@ -1,5 +1,7 @@
 package com.accenture.subcontractor.job.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -22,23 +24,62 @@ public class SkillTypeController {
 	@Resource
 	SkillTypeService skillTypeService;
 
-	@RequestMapping(value = "/getSkillType", method = RequestMethod.POST)
-	public SkillType getSkillType(@RequestParam("skillType") String skillId) {
+	@RequestMapping(value = "/selectByPrimaryKey", method = RequestMethod.POST)
+	public SkillType selectByPrimaryKey(@RequestParam("skillType") String skillId) {
 		SkillType skillType = skillTypeService.selectByPrimaryKey(skillId);
 		return skillType;
 	}
-	@RequestMapping(value = "/queryList", method = RequestMethod.POST)
-	public PageInfo<SkillType> queryList(@RequestBody SkillTypeConditon skillTypeConditon) {
+	@RequestMapping(value = "/selectByName", method = RequestMethod.POST)
+	public List<SkillType> selectByName(@RequestParam("skillName") String skillName) {
 		try {
-			PageInfo<SkillType> pageDta=skillTypeService.queryList(skillTypeConditon);
+			List<SkillType> skillType = skillTypeService.selectSkillTypeByName(skillName);
+			return skillType;
+		} catch (Exception e) {
+			logger.error("SkillTypeController>selectByName>Exception"+e);
+			throw e;
+		}
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void insert(@RequestBody SkillType skillType) {
+		try {
+			skillTypeService.insert(skillType);
+		} catch (Exception e) {
+			logger.error("SkillTypeController>insert>Exception"+e);
+			throw e;
+		}
+	}
+	
+	@RequestMapping(value="/queryListByIDs",method=RequestMethod.POST)
+	public List<SkillType> listSkillByIDs(@RequestBody List<SkillType> recordList){
+		try {
+			return skillTypeService.queryListByIds(recordList);
+		} catch (Exception e) {
+			logger.error("SkillTypeController>listSkillByIDs>Exception"+e);
+			throw e;
+		}
+	}
+	@RequestMapping(value="/listChildSkill",method=RequestMethod.POST)
+	public List<SkillType> listChildSkill(@RequestBody SkillType skillType){
+		try {
+			if(null!=skillType&&null!=skillType.getSkillId()){
+				return skillTypeService.listChildSkill(skillType.getSkillId());
+			}else{
+				throw new NullPointerException("SkillTypeController>listChildSkill>skillType.getSkillId()=null");
+			}
+		} catch (Exception e) {
+			logger.error("SkillTypeController>listChildSkill>Exception"+e);
+			throw e;
+		}
+	}
+	@RequestMapping(value = "/querySkillRootList", method = RequestMethod.POST)
+	public PageInfo<SkillType> querySkillRootList(@RequestBody SkillTypeConditon skillTypeConditon){
+		try {
+			PageInfo<SkillType> pageDta=skillTypeService.querySkillRootList(skillTypeConditon);
 			return pageDta;
 		} catch (Exception e) {
 			logger.error("SkillTypeController>queryList>Exception"+e);
 			throw e;
 		}
-	}
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public void insert(@RequestBody SkillType skillType) {
-		skillTypeService.insert(skillType);
 	}
 }

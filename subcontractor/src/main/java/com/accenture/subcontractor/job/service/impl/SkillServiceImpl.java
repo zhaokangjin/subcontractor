@@ -1,6 +1,9 @@
 package com.accenture.subcontractor.job.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -92,12 +95,59 @@ public class SkillServiceImpl implements SkillService {
 		}
 		return null;
 	}
-
+	@Override
+	public List<Skill> selectByUserId(String userId){
+		try {
+			return skillMapper.selectByUserId(userId);
+		} catch (Exception e) {
+			logger.error("SkillServiceImpl>selectByUserId>Exception:"+e);
+			throw e;
+		}
+	}
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void updateBatch(Skill record) {
 		try {
 			skillMapper.updateByPrimaryKeySelective(record);
+		} catch (Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			logger.error("SkillServiceImpl>updateBatch>Exception:"+e);
+			throw e;
+		}
+	}
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void insertOrUpdate(List<Skill> recordList) {
+		try {
+			if(null!=recordList){
+				Date date=new Date();
+				List<Skill> deleteRecords=new ArrayList<Skill>();
+				List<Skill> insertRecords=new ArrayList<Skill>();
+				List<Skill> updateRecords=new ArrayList<Skill>();
+				for(Skill record:recordList){
+					if(null!=record.getDeleteFlag()&& record.getDeleteFlag().equals("Y")){
+						deleteRecords.add(record);
+					}else if(null!=record.getDeleteFlag()&& record.getDeleteFlag().equals("U")&&null!=record.getUserId()){
+						record.setDeleteFlag("N");
+						record.setLastUpdateTime(date);
+						updateRecords.add(record);
+					}else if(null==record.getDeleteFlag()){
+						record.setDeleteFlag("N");
+						record.setProfessionSkillId(UUID.randomUUID().toString());
+						record.setCreateTime(date);
+						insertRecords.add(record);
+					}
+				}
+				if(deleteRecords.size()>0){
+					skillMapper.deleteBatch(deleteRecords);
+				}
+				if(insertRecords.size()>0){
+					skillMapper.insertBatch(insertRecords);
+				}
+				if(updateRecords.size()>0){
+					skillMapper.updateBatch(updateRecords);
+				}
+			}
 		} catch (Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			logger.error("SkillServiceImpl>updateBatch>Exception:"+e);

@@ -11,6 +11,8 @@ public interface SkillService {
 	void deleteByPrimaryKey(String id);
 
 	void insert(Skill record);
+	
+	List<Skill> selectByUserId(String userId);
 
 	void insertBatch(List<Skill> recordList);
 
@@ -20,4 +22,5 @@ public interface SkillService {
 
 	void updateBatch(Skill record);
 
+	void insertOrUpdate(List<Skill> recordList);
 }

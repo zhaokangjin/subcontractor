@@ -2,6 +2,8 @@ package com.accenture.subcontractor.job.persistence;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.accenture.subcontractor.job.domain.User;
 
 public interface UserMapper {
@@ -11,7 +13,7 @@ public interface UserMapper {
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(String userId);
+    User selectByPrimaryKey(@Param("userId") String userId);
 
     int updateByPrimaryKeySelective(User record);
 

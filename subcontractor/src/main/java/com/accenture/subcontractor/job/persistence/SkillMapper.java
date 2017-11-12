@@ -14,6 +14,8 @@ public interface SkillMapper {
     int insertSelective(Skill record);
 
     Skill selectByPrimaryKey(@Param("id")String professionSkillId);
+    
+    List<Skill> selectByUserId(@Param("userId")String userId);
 
     int updateByPrimaryKeySelective(Skill record);
 

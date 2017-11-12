@@ -1,5 +1,7 @@
 package com.accenture.subcontractor.job.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -8,12 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import com.accenture.subcontractor.job.domain.Skill;
 import com.accenture.subcontractor.job.domain.User;
 import com.accenture.subcontractor.job.persistence.EducationResumeMapper;
 import com.accenture.subcontractor.job.persistence.UserMapper;
 import com.accenture.subcontractor.job.service.AccountService;
 import com.accenture.subcontractor.job.service.SkillService;
 import com.accenture.subcontractor.job.service.UserService;
+import com.alibaba.fastjson.JSON;
 
 @Service
 @Transactional
@@ -112,12 +116,26 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User selectByPrimaryKey(String userId) {
-		return userMapper.selectByPrimaryKey(userId);
+		logger.info("UserServiceImpl>selectByPrimaryKey>userId:"+userId);
+		try {
+			return userMapper.selectByPrimaryKey(userId);
+		} catch (Exception e) {
+			logger.error("UserServiceImpl>selectByPrimaryKey>Exception:"+e);
+			throw e;
+		}
 	}
 
 	@Override
+	@Transactional
 	public int updateByPrimaryKeySelective(User record) {
-		return userMapper.updateByPrimaryKeySelective(record);
+		logger.info("UserServiceImpl>updateByPrimaryKeySelective>record:"+JSON.toJSONString(record));
+		try {
+			return userMapper.updateByPrimaryKeySelective(record);
+		} catch (Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			logger.info("UserServiceImpl>updateByPrimaryKeySelective>Exception:"+e);
+			throw e;
+		}
 	}
 
 //	@Override
@@ -139,7 +157,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String saveOrUpdateUser(User user) {
-		// TODO Auto-generated method stub
+		userMapper.insert(user);
+		List<Skill> skillList=user.getSkillList();
 		return null;
 	}
 
@@ -157,6 +176,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserByKey(String userId) {
-		return userMapper.selectByPrimaryKey(userId);
+		logger.info("UserServiceImpl>getUserByKey>userId:"+userId);
+		try {
+			return userMapper.selectByPrimaryKey(userId);
+		} catch (Exception e) {
+			logger.info("UserServiceImpl>getUserByKey>Exception:"+e);
+			throw e;
+		}
 	}
 }
